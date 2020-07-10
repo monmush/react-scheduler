@@ -1,13 +1,19 @@
-import React, { useState } from 'react'
-import { DatePicker, Button, Row, Radio, Col, Tabs } from 'antd'
+import React, { useEffect, useState, useContext } from 'react'
+import { DatePicker, Button, Row, Radio, Col, Typography } from 'antd'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import styles from './styles.module.css'
 import moment from 'moment'
+import { ConfigContext } from '../index'
 
+const { Title } = Typography
 const SchedulerHeader = () => {
   const now = moment()
   const [currentDate, setCurrentDate] = useState(now)
   const [mode, setMode] = useState('week')
+  const month = moment(currentDate).format('MMMM')
+
+  // Context
+  const { updateConfig } = useContext(ConfigContext)
 
   const onPrev = () => {
     setCurrentDate((prev) => moment(prev).subtract(1, 'week'))
@@ -26,9 +32,14 @@ const SchedulerHeader = () => {
     setMode(value)
   }
 
+  useEffect(() => {
+    updateConfig({ currentDate: currentDate })
+  }, [currentDate])
+
   return (
     <Row justify='space-between'>
       <Col>
+        <Title>{month}</Title>
         <Button
           onClick={onPrev}
           style={{ border: 'none' }}

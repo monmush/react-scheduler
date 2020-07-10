@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Table } from 'antd'
+import { ConfigContext } from '../index'
+import moment from 'moment'
 
 const index = () => {
   return (
@@ -10,10 +12,31 @@ const index = () => {
 }
 
 const Header = () => {
+  const {
+    config: { currentDate }
+  } = useContext(ConfigContext)
+
+  const getCurrentWeekDays = () => {
+    const weekStart = moment(currentDate).startOf('week')
+
+    const days = []
+    for (let i = 0; i <= 6; i++) {
+      days.push(moment(weekStart).add(i, 'days'))
+    }
+    const renderColumns = days.map((day) => ({
+      title: day.format('ddd DD/MM'),
+      key: 0,
+      render: () => {
+        return <div>alo</div>
+      }
+    }))
+    return renderColumns
+  }
+
   return (
     <Table
       size='large'
-      columns={columns}
+      columns={getCurrentWeekDays()}
       dataSource={data}
       pagination={false}
       bordered
@@ -33,39 +56,6 @@ const data = [
   },
   {
     id: 3
-  }
-]
-const columns = [
-  {
-    title: 'Thu 2',
-    key: 0,
-    render: () => {
-      return <div>alo</div>
-    }
-  },
-  {
-    title: 'Thu 3',
-    key: 1
-  },
-  {
-    title: 'Thu 4',
-    key: 2
-  },
-  {
-    title: 'Thu 5',
-    key: 3
-  },
-  {
-    title: 'Thu 6',
-    key: 4
-  },
-  {
-    title: 'Thu 7',
-    key: 5
-  },
-  {
-    title: 'Chu nhat',
-    key: 6
   }
 ]
 export default index
