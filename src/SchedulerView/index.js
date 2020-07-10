@@ -2,6 +2,8 @@ import React, { useContext } from 'react'
 import { Table } from 'antd'
 import { ConfigContext } from '../index'
 import moment from 'moment'
+import Cell from './Cell'
+import styles from './styles.module.css'
 
 const index = () => {
   return (
@@ -15,7 +17,6 @@ const Header = () => {
   const {
     config: { currentDate }
   } = useContext(ConfigContext)
-
   const getCurrentWeekDays = () => {
     const weekStart = moment(currentDate).startOf('week')
 
@@ -26,13 +27,10 @@ const Header = () => {
     const renderColumns = days.map((day) => ({
       title: day.format('ddd DD/MM'),
       key: 0,
-      render: () => {
-        return <div>alo</div>
-      }
+      render: () => <Cell />
     }))
     return renderColumns
   }
-
   return (
     <Table
       size='large'
@@ -40,6 +38,7 @@ const Header = () => {
       dataSource={data}
       pagination={false}
       bordered
+      className={styles.table}
     />
   )
 }
