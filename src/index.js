@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react'
 import '../node_modules/antd/dist/antd.min.css'
-import './style.css'
+import styles from './styles.module.css'
 import SchedulerHeader from './SchedulerHeader/index'
 import ResourceView from './ResourceView/index'
 import SchedulerView from './SchedulerView/index'
@@ -8,7 +8,6 @@ import { DndProvider } from 'react-dnd'
 import moment from 'moment'
 import 'moment/locale/vi'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-
 export const ConfigContext = createContext(null)
 
 export const ExampleComponent = ({ data = {} }) => {
@@ -18,7 +17,12 @@ export const ExampleComponent = ({ data = {} }) => {
   const [config, setConfig] = useState({
     currentDate: moment(),
     locale: 'vi',
-    shiftTypes: shiftTypes
+    shiftTypes: shiftTypes,
+    resources: resources,
+    cellBgColor: '#ffffff',
+    cellBgHoverColor: '#fafafa',
+    cellHeight: '55px',
+    cellPadding: '16px'
   })
   moment.locale(config.locale)
 
@@ -31,13 +35,13 @@ export const ExampleComponent = ({ data = {} }) => {
   return (
     <DndProvider backend={HTML5Backend}>
       <ConfigContext.Provider value={configContextValue}>
-        <div style={{ width: '100%' }}>
+        <div className={styles.scheduler}>
           <SchedulerHeader />
-          <table style={{ width: '100%' }}>
+          <table>
             <tbody>
               <tr>
                 <td width='200px' colSpan='1'>
-                  <ResourceView resources={resources} />
+                  <ResourceView />
                 </td>
                 <td colSpan='5'>
                   <SchedulerView />
@@ -45,8 +49,6 @@ export const ExampleComponent = ({ data = {} }) => {
               </tr>
             </tbody>
           </table>
-
-          <h1>Example</h1>
         </div>
       </ConfigContext.Provider>
     </DndProvider>

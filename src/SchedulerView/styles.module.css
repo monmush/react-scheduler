@@ -1,0 +1,7 @@
+.schedulerView table > tbody > tr:hover > td {
+  background: #ffffff !important;
+}
+
+.schedulerView table > tbody > tr > td {
+  padding: 0 !important;
+}

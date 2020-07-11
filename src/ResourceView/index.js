@@ -1,15 +1,23 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Table } from 'antd'
-
-const columns = [
-  {
-    title: 'Nhân viên',
-    dataIndex: 'name',
-    key: 'id'
+import { ConfigContext } from '../index'
+import styles from './styles.module.css'
+const index = () => {
+  const {
+    config: { resources, cellHeight, cellPadding }
+  } = useContext(ConfigContext)
+  const style = {
+    height: cellHeight,
+    padding: cellPadding
   }
-]
-
-const index = ({ resources }) => {
+  const columns = [
+    {
+      title: 'Nhân viên',
+      dataIndex: 'name',
+      key: 'id',
+      render: (text, record) => <div style={style}>{text}</div>
+    }
+  ]
   return (
     <div>
       <Table
@@ -18,6 +26,7 @@ const index = ({ resources }) => {
         size='large'
         dataSource={resources}
         bordered
+        className={styles.resourceView}
       />
     </div>
   )

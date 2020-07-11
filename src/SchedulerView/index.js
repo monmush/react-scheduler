@@ -38,7 +38,7 @@ const Header = () => {
       dataSource={data}
       pagination={false}
       bordered
-      className={styles.table}
+      className={styles.schedulerView}
     />
   )
 }
