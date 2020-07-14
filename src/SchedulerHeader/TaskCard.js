@@ -4,7 +4,11 @@ import { useDrag } from 'react-dnd'
 const TaskCard = ({ shiftName, id }) => {
   // useDrag
   const [{ isDragging }, drag] = useDrag({
-    item: { type: 'shift', id: id },
+    item: {
+      type: 'shift',
+      id: id,
+      shiftName: shiftName
+    },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging()
     })

@@ -10,19 +10,21 @@ import 'moment/locale/vi'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 export const ConfigContext = createContext(null)
 
-export const ExampleComponent = ({ data = {} }) => {
-  const { resources, shiftTypes } = data
+export const ExampleComponent = ({ data = {}, resourceCellContent }) => {
+  const { resources, shiftTypes, events } = data
 
   // config
   const [config, setConfig] = useState({
-    currentDate: moment(),
-    locale: 'vi',
     shiftTypes: shiftTypes,
     resources: resources,
+    events: events,
+    currentDate: moment(),
+    locale: 'vi',
     cellBgColor: '#ffffff',
     cellBgHoverColor: '#fafafa',
     cellHeight: '55px',
-    cellPadding: '16px'
+    cellPadding: '8px 16px 8px 16px',
+    dateFormat: 'DD/MM/YYYY'
   })
   moment.locale(config.locale)
 
@@ -41,7 +43,7 @@ export const ExampleComponent = ({ data = {} }) => {
             <tbody>
               <tr>
                 <td width='200px' colSpan='1'>
-                  <ResourceView />
+                  <ResourceView resourceCellContent={resourceCellContent} />
                 </td>
                 <td colSpan='5'>
                   <SchedulerView />

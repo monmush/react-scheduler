@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Table } from 'antd'
 import { ConfigContext } from '../index'
 import styles from './styles.module.css'
-const index = () => {
+const index = ({ resourceCellContent }) => {
   const {
     config: { resources, cellHeight, cellPadding }
   } = useContext(ConfigContext)
@@ -10,12 +10,27 @@ const index = () => {
     height: cellHeight,
     padding: cellPadding
   }
+
+  const renderCellContent = () => {
+    if (resourceCellContent) {
+      return resourceCellContent()
+    }
+    return null
+  }
+
   const columns = [
     {
       title: 'Nhân viên',
       dataIndex: 'name',
       key: 'id',
-      render: (text, record) => <div style={style}>{text}</div>
+      render: (text, record) => {
+        return (
+          <div style={style}>
+            <div>{text}</div>
+            <div>{renderCellContent()}</div>
+          </div>
+        )
+      }
     }
   ]
   return (

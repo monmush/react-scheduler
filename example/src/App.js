@@ -42,11 +42,44 @@ const App = () => {
         id: 3,
         name: 'Ca tối'
       }
+    ],
+    events: [
+      {
+        id: 0,
+        event: {
+          start: '14/07/2020',
+          end: '14/07/2020',
+          shiftType: 'Ca sáng'
+        },
+        resource: 'Pham Duc Minh'
+      },
+      {
+        id: 3,
+        event: {
+          start: '15/07/2020',
+          end: '15/07/2020',
+          shiftType: 'Ca sáng'
+        },
+        resource: 'Huynh Lam'
+      },
+      {
+        id: 4,
+        event: {
+          start: '15/07/2020',
+          end: '15/07/2020',
+          shiftType: 'Ca sáng'
+        },
+        resource: 'Hoang Thi Thu Hien'
+      }
     ]
+  }
+
+  const resourceCellContent = () => {
+    return <span>Tổng số ca làm: 10</span>
   }
   return (
     <div style={{ padding: '10em' }}>
-      <ExampleComponent data={data} />
+      <ExampleComponent data={data} resourceCellContent={resourceCellContent} />
     </div>
   )
 }
