@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Table } from 'antd'
-import { ConfigContext } from '../index'
+import { SchedulerData } from '../index'
 import moment from 'moment'
 import Cell from './Cell'
 import styles from './styles.module.css'
@@ -15,8 +15,10 @@ const index = () => {
 
 const Header = () => {
   const {
-    config: { currentDate, resources, dateFormat, events }
-  } = useContext(ConfigContext)
+    config: { currentDate, dateFormat },
+    events,
+    resources
+  } = useContext(SchedulerData)
   const getCurrentWeekDays = () => {
     const weekStart = moment(currentDate).startOf('week')
 

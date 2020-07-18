@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { useDrop } from 'react-dnd'
-import { ConfigContext } from '../index'
+import { SchedulerData } from '../index'
 
 const Cell = ({ children }) => {
   // react-dnd
@@ -15,7 +15,7 @@ const Cell = ({ children }) => {
   // context
   const {
     config: { cellBgColor, cellBgHoverColor, cellHeight, cellPadding }
-  } = useContext(ConfigContext)
+  } = useContext(SchedulerData)
 
   const style = {
     backgroundColor: isOver ? cellBgHoverColor : cellBgColor,

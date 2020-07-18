@@ -8,16 +8,13 @@ import { DndProvider } from 'react-dnd'
 import moment from 'moment'
 import 'moment/locale/vi'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-export const ConfigContext = createContext(null)
+export const SchedulerData = createContext(null)
 
 export const ExampleComponent = ({ data = {}, resourceCellContent }) => {
   const { resources, shiftTypes, events } = data
 
   // config
   const [config, setConfig] = useState({
-    shiftTypes: shiftTypes,
-    resources: resources,
-    events: events,
     currentDate: moment(),
     locale: 'vi',
     cellBgColor: '#ffffff',
@@ -28,15 +25,26 @@ export const ExampleComponent = ({ data = {}, resourceCellContent }) => {
   })
   moment.locale(config.locale)
 
+  const newEvent = () => {}
   const updateConfig = (args) => {
     setConfig((prev) => ({ ...prev, ...args }))
   }
 
-  const configContextValue = { config: config, updateConfig: updateConfig }
+  const SchedulerDataValue = {
+    // settings
+    config: config,
+    resources: resources,
+    events: events,
+    shiftTypes: shiftTypes,
+
+    // actions
+    updateConfig: updateConfig,
+    newEvent: newEvent
+  }
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <ConfigContext.Provider value={configContextValue}>
+      <SchedulerData.Provider value={SchedulerDataValue}>
         <div className={styles.scheduler}>
           <SchedulerHeader />
           <table>
@@ -52,7 +60,7 @@ export const ExampleComponent = ({ data = {}, resourceCellContent }) => {
             </tbody>
           </table>
         </div>
-      </ConfigContext.Provider>
+      </SchedulerData.Provider>
     </DndProvider>
   )
 }

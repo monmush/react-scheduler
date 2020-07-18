@@ -1,11 +1,12 @@
 import React, { useContext } from 'react'
 import { Table } from 'antd'
-import { ConfigContext } from '../index'
+import { SchedulerData } from '../index'
 import styles from './styles.module.css'
 const index = ({ resourceCellContent }) => {
   const {
-    config: { resources, cellHeight, cellPadding }
-  } = useContext(ConfigContext)
+    config: { cellHeight, cellPadding },
+    resources
+  } = useContext(SchedulerData)
   const style = {
     height: cellHeight,
     padding: cellPadding
