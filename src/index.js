@@ -41,7 +41,6 @@ export const ExampleComponent = ({ data = {}, resourceCellContent }) => {
     message.success(JSON.stringify(newEvent))
     setEvents((prev) => [...prev, newEvent])
   }
-  console.log(events)
   const updateConfig = (args) => {
     setConfig((prev) => ({ ...prev, ...args }))
   }

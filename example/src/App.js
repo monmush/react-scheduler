@@ -63,10 +63,37 @@ const App = () => {
         resource: 'Huynh Lam'
       },
       {
+        id: 3,
+        event: {
+          start: '24/07/2020',
+          end: '24/07/2020',
+          shiftType: 'Ca sáng'
+        },
+        resource: 'Huynh Lam'
+      },
+      {
+        id: 3,
+        event: {
+          start: '25/07/2020',
+          end: '25/07/2020',
+          shiftType: 'Ca sáng'
+        },
+        resource: 'Huynh Lam'
+      },
+      {
         id: 4,
         event: {
           start: '20/07/2020',
           end: '20/07/2020',
+          shiftType: 'Ca sáng'
+        },
+        resource: 'Hoang Thi Thu Hien'
+      },
+      {
+        id: 5,
+        event: {
+          start: '24/07/2020',
+          end: '24/07/2020',
           shiftType: 'Ca sáng'
         },
         resource: 'Hoang Thi Thu Hien'

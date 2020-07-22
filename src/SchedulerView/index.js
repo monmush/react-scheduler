@@ -22,7 +22,7 @@ const Header = () => {
   } = useContext(SchedulerData)
   const getCurrentWeekDays = () => {
     const weekStart = moment(currentDate).startOf('week')
-
+    console.log(events)
     const days = []
     for (let i = 0; i <= 6; i++) {
       days.push(moment(weekStart).add(i, 'days'))
@@ -33,21 +33,26 @@ const Header = () => {
       key: day.format(dateFormat),
       dataIndex: 'event',
       render: (text, record, index) => {
+        const { event } = record
+        if (event.length !== 0) {
+          return event.map((evt, i) => {
+            try {
+              if (
+                evt.start === day.format(dateFormat) &&
+                evt.slotId === index
+              ) {
+                return (
+                  <Cell key={index} cellData={record} date={day}>
+                    {evt.shiftType + evt.resource}
+                  </Cell>
+                )
+              }
+              return null
+            } catch (ignore) {}
+          })
+        }
+        return <Cell key={index} cellData={record} date={day} />
         // Only display record that has the exactly startDate and slotId
-        try {
-          if (
-            record.event.start === day.format(dateFormat) &&
-            record.slotId === index
-          ) {
-            return (
-              <Cell cellData={record} date={day}>
-                <span>{record.event.shiftType}</span>
-              </Cell>
-            )
-          }
-        } catch (ignore) {}
-
-        return <Cell cellData={record} date={day} />
       }
     }))
     return renderColumns
@@ -58,15 +63,26 @@ const Header = () => {
   for (let i = 0; i < resources.length; i++) {
     columnContent.push({
       slotId: i,
-      event: {},
+      event: [],
       resource: resourcesList[i]
     })
   }
 
-  for (let i = 0; i < events.length; i++) {
-    columnContent[i].id = events[i].id
-    columnContent[events[i].slotId].event = events[i].event
-  }
+  events.map((evt) => {
+    columnContent[evt.slotId].event.push({
+      ...evt.event,
+      id: evt.id,
+      slotId: evt.slotId,
+      resource: evt.resource
+    })
+  })
+
+  // for (let i = 0; i < events.length; i++) {
+  //   columnContent[i].id = events[i].id
+  //   columnContent[events[i].slotId].event = events[i].event
+  // }
+
+  console.log(columnContent)
 
   return (
     <Table
