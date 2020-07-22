@@ -101,7 +101,7 @@ const App = () => {
     ]
   }
 
-  const resourceCellContent = () => {
+  const resourceCellContent = (columnData) => {
     return <span>Tổng số ca làm: 10</span>
   }
   return (

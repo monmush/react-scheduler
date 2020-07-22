@@ -22,7 +22,6 @@ const Header = () => {
   } = useContext(SchedulerData)
   const getCurrentWeekDays = () => {
     const weekStart = moment(currentDate).startOf('week')
-    console.log(events)
     const days = []
     for (let i = 0; i <= 6; i++) {
       days.push(moment(weekStart).add(i, 'days'))
@@ -34,7 +33,11 @@ const Header = () => {
       dataIndex: 'event',
       render: (text, record, index) => {
         const { event } = record
-        if (event.length !== 0) {
+        const eventOnThisDate = event.filter(
+          (item) => item.start === day.format(dateFormat)
+        )
+        const eventExisted = eventOnThisDate.length !== 0
+        if (eventExisted) {
           return event.map((evt, i) => {
             try {
               if (
@@ -43,7 +46,7 @@ const Header = () => {
               ) {
                 return (
                   <Cell key={index} cellData={record} date={day}>
-                    {evt.shiftType + evt.resource}
+                    {evt.shiftType}
                   </Cell>
                 )
               }
@@ -57,11 +60,11 @@ const Header = () => {
     }))
     return renderColumns
   }
-  const columnContent = []
+  const columnData = []
 
   // Initialize columns data with slotId and empty event
   for (let i = 0; i < resources.length; i++) {
-    columnContent.push({
+    columnData.push({
       slotId: i,
       event: [],
       resource: resourcesList[i]
@@ -69,7 +72,7 @@ const Header = () => {
   }
 
   events.map((evt) => {
-    columnContent[evt.slotId].event.push({
+    columnData[evt.slotId].event.push({
       ...evt.event,
       id: evt.id,
       slotId: evt.slotId,
@@ -77,18 +80,11 @@ const Header = () => {
     })
   })
 
-  // for (let i = 0; i < events.length; i++) {
-  //   columnContent[i].id = events[i].id
-  //   columnContent[events[i].slotId].event = events[i].event
-  // }
-
-  console.log(columnContent)
-
   return (
     <Table
       size='large'
       columns={getCurrentWeekDays()}
-      dataSource={columnContent}
+      dataSource={columnData}
       pagination={false}
       bordered
       className={styles.schedulerView}
