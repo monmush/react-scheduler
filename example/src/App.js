@@ -47,8 +47,8 @@ const App = () => {
       {
         id: 0,
         event: {
-          start: '14/07/2020',
-          end: '14/07/2020',
+          start: '25/07/2020',
+          end: '25/07/2020',
           shiftType: 'Ca sáng'
         },
         resource: 'Pham Duc Minh'
@@ -56,8 +56,8 @@ const App = () => {
       {
         id: 3,
         event: {
-          start: '15/07/2020',
-          end: '15/07/2020',
+          start: '22/07/2020',
+          end: '22/07/2020',
           shiftType: 'Ca sáng'
         },
         resource: 'Huynh Lam'
@@ -65,8 +65,8 @@ const App = () => {
       {
         id: 4,
         event: {
-          start: '15/07/2020',
-          end: '15/07/2020',
+          start: '20/07/2020',
+          end: '20/07/2020',
           shiftType: 'Ca sáng'
         },
         resource: 'Hoang Thi Thu Hien'

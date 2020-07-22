@@ -8,10 +8,23 @@ import { DndProvider } from 'react-dnd'
 import moment from 'moment'
 import 'moment/locale/vi'
 import { HTML5Backend } from 'react-dnd-html5-backend'
+import { message } from 'antd'
 export const SchedulerData = createContext(null)
 
 export const ExampleComponent = ({ data = {}, resourceCellContent }) => {
-  const { resources, shiftTypes, events } = data
+  const { resources, shiftTypes, events: userEvents } = data
+
+  // Create an array of resources
+  const resourcesList = resources.map((item) => item.name)
+
+  // Add slotId attribute depend on the resouce
+  const formattedUserEvents = userEvents.map((evt) => ({
+    ...evt,
+    slotId: resourcesList.indexOf(evt.resource)
+  }))
+
+  // List of events which will be displayed on the scheduler
+  const [events, setEvents] = useState(formattedUserEvents)
 
   // config
   const [config, setConfig] = useState({
@@ -24,8 +37,11 @@ export const ExampleComponent = ({ data = {}, resourceCellContent }) => {
     dateFormat: 'DD/MM/YYYY'
   })
   moment.locale(config.locale)
-
-  const newEvent = () => {}
+  const addEvent = (newEvent) => {
+    message.success(JSON.stringify(newEvent))
+    setEvents((prev) => [...prev, newEvent])
+  }
+  console.log(events)
   const updateConfig = (args) => {
     setConfig((prev) => ({ ...prev, ...args }))
   }
@@ -36,10 +52,11 @@ export const ExampleComponent = ({ data = {}, resourceCellContent }) => {
     resources: resources,
     events: events,
     shiftTypes: shiftTypes,
+    resourcesList: resourcesList,
 
     // actions
     updateConfig: updateConfig,
-    newEvent: newEvent
+    addEvent: addEvent
   }
 
   return (

@@ -17,7 +17,8 @@ const Header = () => {
   const {
     config: { currentDate, dateFormat },
     events,
-    resources
+    resources,
+    resourcesList
   } = useContext(SchedulerData)
   const getCurrentWeekDays = () => {
     const weekStart = moment(currentDate).startOf('week')
@@ -26,55 +27,45 @@ const Header = () => {
     for (let i = 0; i <= 6; i++) {
       days.push(moment(weekStart).add(i, 'days'))
     }
+
     const renderColumns = days.map((day) => ({
       title: day.format('ddd DD/MM'),
       key: day.format(dateFormat),
       dataIndex: 'event',
-      render: (record) => {
-        // Only display record that has the exactly startDate (vertical matching)
+      render: (text, record, index) => {
+        // Only display record that has the exactly startDate and slotId
         try {
-          if (record.event.start === day.format(dateFormat)) {
+          if (
+            record.event.start === day.format(dateFormat) &&
+            record.slotId === index
+          ) {
             return (
-              <Cell>
+              <Cell cellData={record} date={day}>
                 <span>{record.event.shiftType}</span>
               </Cell>
             )
           }
         } catch (ignore) {}
 
-        return <Cell />
+        return <Cell cellData={record} date={day} />
       }
     }))
     return renderColumns
   }
   const columnContent = []
 
-  // Matching between slotId and resourceName
+  // Initialize columns data with slotId and empty event
   for (let i = 0; i < resources.length; i++) {
     columnContent.push({
       slotId: i,
-      event: {}
+      event: {},
+      resource: resourcesList[i]
     })
   }
 
-  // Create an array of all resources
-  const resourcesList = resources.map((item) => item.name)
-
-  // Add slodId property to existed events
-  const eventsWithSlotId = events.map((item) => {
-    const slotId = resourcesList.indexOf(item.resource)
-    return {
-      ...item,
-      event: {
-        ...item.event,
-        slotId: slotId
-      }
-    }
-  })
-
-  // Add the event with the correct slotId to the columns (horizontal matching)
-  for (let i = 0; i < eventsWithSlotId.length; i++) {
-    columnContent[eventsWithSlotId[i].event.slotId].event = eventsWithSlotId[i]
+  for (let i = 0; i < events.length; i++) {
+    columnContent[i].id = events[i].id
+    columnContent[events[i].slotId].event = events[i].event
   }
 
   return (

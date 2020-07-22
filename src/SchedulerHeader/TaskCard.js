@@ -1,13 +1,13 @@
 import React from 'react'
 import { useDrag } from 'react-dnd'
 
-const TaskCard = ({ shiftName, id }) => {
+const TaskCard = ({ shiftType, id }) => {
   // useDrag
   const [{ isDragging }, drag] = useDrag({
     item: {
       type: 'shift',
       id: id,
-      shiftName: shiftName
+      shiftType: shiftType
     },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging()
@@ -24,7 +24,7 @@ const TaskCard = ({ shiftName, id }) => {
       }}
       ref={drag}
     >
-      {shiftName}
+      {shiftType}
     </div>
   )
 }
