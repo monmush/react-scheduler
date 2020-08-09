@@ -3,7 +3,7 @@ import { DatePicker, Button, Row, Radio, Col, Typography, Card } from 'antd'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import styles from './styles.module.css'
 import moment from 'moment'
-import { SchedulerData } from '../index'
+import { SchedulerDataContext } from '../index'
 import TaskCard from './TaskCard'
 
 const { Title } = Typography
@@ -14,7 +14,7 @@ const SchedulerHeader = () => {
   const month = moment(currentDate).format('MMMM')
 
   // context
-  const { updateConfig, shiftTypes } = useContext(SchedulerData)
+  const { updateConfig, shiftTypes } = useContext(SchedulerDataContext)
 
   // quay lại mốc thời gian trước đó
   const onPrev = () => {
@@ -43,9 +43,13 @@ const SchedulerHeader = () => {
   }, [currentDate])
 
   //
-  const renderShiftTypes = shiftTypes.map((shift) => (
-    <TaskCard key={shift.id} shiftType={shift.name} id={shift.id} />
-  ))
+  const renderShiftTypes =
+    !!shiftTypes &&
+    shiftTypes.map((shift) => (
+      <TaskCard key={shift.id} shiftType={shift.name} id={shift.id} />
+    ))
+
+  console.log('scheduler header')
   return (
     <React.Fragment>
       <Title>{month}</Title>

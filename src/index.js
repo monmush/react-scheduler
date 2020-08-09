@@ -9,19 +9,26 @@ import moment from 'moment'
 import 'moment/locale/vi'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { message } from 'antd'
-export const SchedulerData = createContext(null)
 
-export const ExampleComponent = ({ data = {}, resourceCellContent }) => {
-  const { resources, shiftTypes, events: userEvents } = data
+export const SchedulerDataContext = createContext(null)
 
+const Scheduler = ({
+  resources,
+  shiftTypes,
+  events: userEvents,
+  resourceCellContent,
+  displayAvatar
+}) => {
   // Create an array of resources
   const resourcesList = resources.map((item) => item.name)
 
   // Add slotId attribute depend on the resouce
-  const formattedUserEvents = userEvents.map((evt) => ({
-    ...evt,
-    slotId: resourcesList.indexOf(evt.resource)
-  }))
+  const formattedUserEvents =
+    !!userEvents &&
+    userEvents.map((evt) => ({
+      ...evt,
+      slotId: resourcesList.indexOf(evt.resource)
+    }))
 
   // List of events which will be displayed on the scheduler
   const [events, setEvents] = useState(formattedUserEvents)
@@ -37,6 +44,7 @@ export const ExampleComponent = ({ data = {}, resourceCellContent }) => {
     dateFormat: 'DD/MM/YYYY'
   })
   moment.locale(config.locale)
+
   const addEvent = (newEvent) => {
     message.success(JSON.stringify(newEvent))
     setEvents((prev) => [...prev, newEvent])
@@ -45,29 +53,31 @@ export const ExampleComponent = ({ data = {}, resourceCellContent }) => {
     setConfig((prev) => ({ ...prev, ...args }))
   }
 
-  const SchedulerDataValue = {
+  const SchedulerData = {
     // settings
     config: config,
     resources: resources,
     events: events,
     shiftTypes: shiftTypes,
     resourcesList: resourcesList,
+    displayAvatar: displayAvatar,
 
     // actions
     updateConfig: updateConfig,
-    addEvent: addEvent
+    addEvent: addEvent,
+    resourceCellContent: resourceCellContent
   }
-
+  console.log(SchedulerData)
   return (
     <DndProvider backend={HTML5Backend}>
-      <SchedulerData.Provider value={SchedulerDataValue}>
+      <SchedulerDataContext.Provider value={SchedulerData}>
         <div className={styles.scheduler}>
           <SchedulerHeader />
           <table>
             <tbody>
               <tr>
                 <td width='200px' colSpan='1'>
-                  <ResourceView resourceCellContent={resourceCellContent} />
+                  <ResourceView />
                 </td>
                 <td colSpan='5'>
                   <SchedulerView />
@@ -76,7 +86,9 @@ export const ExampleComponent = ({ data = {}, resourceCellContent }) => {
             </tbody>
           </table>
         </div>
-      </SchedulerData.Provider>
+      </SchedulerDataContext.Provider>
     </DndProvider>
   )
 }
+
+export default Scheduler

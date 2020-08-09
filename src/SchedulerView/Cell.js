@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { useDrop } from 'react-dnd'
-import { SchedulerData } from '../index'
+import { SchedulerDataContext } from '../index'
 import { v4 as uuidv4 } from 'uuid'
 
 const Cell = ({ cellData = {}, children, date }) => {
@@ -37,7 +37,7 @@ const Cell = ({ cellData = {}, children, date }) => {
       dateFormat
     },
     addEvent
-  } = useContext(SchedulerData)
+  } = useContext(SchedulerDataContext)
 
   const style = {
     backgroundColor: isOver ? cellBgHoverColor : cellBgColor,

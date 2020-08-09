@@ -1,6 +1,6 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Table } from 'antd'
-import { SchedulerData } from '../index'
+import { SchedulerDataContext } from '../index'
 import moment from 'moment'
 import Cell from './Cell'
 import styles from './styles.module.css'
@@ -19,7 +19,7 @@ const Header = () => {
     events,
     resources,
     resourcesList
-  } = useContext(SchedulerData)
+  } = useContext(SchedulerDataContext)
   const getCurrentWeekDays = () => {
     const weekStart = moment(currentDate).startOf('week')
     const days = []
@@ -63,6 +63,7 @@ const Header = () => {
   const columnData = []
 
   // Initialize columns data with slotId and empty event
+
   for (let i = 0; i < resources.length; i++) {
     columnData.push({
       slotId: i,
