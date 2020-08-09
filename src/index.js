@@ -17,7 +17,8 @@ const Scheduler = ({
   shiftTypes,
   events: userEvents,
   resourceCellContent,
-  displayAvatar
+  displayAvatar,
+  config: userConfig
 }) => {
   // Create an array of resources
   const resourcesList = resources.map((item) => item.name)
@@ -41,7 +42,8 @@ const Scheduler = ({
     cellBgHoverColor: '#fafafa',
     cellHeight: '55px',
     cellPadding: '8px 16px 8px 16px',
-    dateFormat: 'DD/MM/YYYY'
+    dateFormat: 'DD/MM/YYYY',
+    ...userConfig
   })
   moment.locale(config.locale)
 
