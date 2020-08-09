@@ -5,7 +5,6 @@ import { v4 as uuidv4 } from 'uuid'
 
 const Cell = ({ cellData = {}, children, date }) => {
   const { slotId, resource } = cellData
-
   // react-dnd
   const [{ isOver }, drop] = useDrop({
     accept: 'shift',
@@ -13,8 +12,9 @@ const Cell = ({ cellData = {}, children, date }) => {
       const droppedEvent = {
         id: uuidv4(),
         event: {
-          start: date.format(dateFormat),
-          end: date.format(dateFormat),
+          date: date.format(dateFormat),
+          start: item.start,
+          end: item.end,
           shiftType: item.shiftType
         },
         slotId: slotId,

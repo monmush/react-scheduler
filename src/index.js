@@ -18,7 +18,11 @@ const Scheduler = ({
   events: userEvents,
   resourceCellContent,
   displayAvatar,
-  config: userConfig
+  config: userConfig,
+  firstAction,
+  secondAction,
+  firstActionName,
+  secondActionName
 }) => {
   // Create an array of resources
   const resourcesList = resources.map((item) => item.name)
@@ -43,6 +47,7 @@ const Scheduler = ({
     cellHeight: '55px',
     cellPadding: '8px 16px 8px 16px',
     dateFormat: 'DD/MM/YYYY',
+    cellPopoverWidth: '200px',
     ...userConfig
   })
   moment.locale(config.locale)
@@ -67,7 +72,11 @@ const Scheduler = ({
     // actions
     updateConfig: updateConfig,
     addEvent: addEvent,
-    resourceCellContent: resourceCellContent
+    resourceCellContent: resourceCellContent,
+    firstAction: firstAction,
+    secondAction: secondAction,
+    firstActionName: firstActionName,
+    secondActionName: secondActionName
   }
   console.log(SchedulerData)
   return (

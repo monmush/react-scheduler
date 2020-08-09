@@ -5,3 +5,10 @@
 .schedulerView table > tbody > tr > td {
   padding: 0 !important;
 }
+
+.popoverEventTime {
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.5em;
+  margin-top: 0.75em;
+}

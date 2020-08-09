@@ -46,10 +46,15 @@ const SchedulerHeader = () => {
   const renderShiftTypes =
     !!shiftTypes &&
     shiftTypes.map((shift) => (
-      <TaskCard key={shift.id} shiftType={shift.name} id={shift.id} />
+      <TaskCard
+        key={shift.id}
+        shiftType={shift.name}
+        id={shift.id}
+        start={shift.start}
+        end={shift.end}
+      />
     ))
 
-  console.log('scheduler header')
   return (
     <React.Fragment>
       <Title>{month}</Title>
