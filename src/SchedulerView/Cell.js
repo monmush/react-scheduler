@@ -3,9 +3,10 @@ import { useDrop } from 'react-dnd'
 import { SchedulerDataContext } from '../index'
 import { v4 as uuidv4 } from 'uuid'
 import { getPadding, getCellHeight } from '../shared/Method'
-
+import { message } from 'antd'
 const Cell = ({ cellData = {}, children, date }) => {
   const { slotId, resource } = cellData
+  console.log(cellData)
   // react-dnd
   const [{ isOver }, drop] = useDrop({
     accept: 'shift',
@@ -21,7 +22,16 @@ const Cell = ({ cellData = {}, children, date }) => {
         slotId: slotId,
         resource: resource
       }
-      addEvent(droppedEvent)
+      const existedShiftInCell =
+        cellData.event.filter((evt) => evt.date === date.format(dateFormat))
+          .length !== 0
+      // Check if shift already existed
+      // existed => not allow to drop new shift to the cell
+      if (cellData.length === 0 || existedShiftInCell === false) {
+        addEvent(droppedEvent)
+      } else {
+        message.error('Employee already has a shift on the date')
+      }
     },
     collect: (monitor) => ({
       isOver: !!monitor.isOver()
@@ -45,7 +55,6 @@ const Cell = ({ cellData = {}, children, date }) => {
     height: getCellHeight(cellHeight),
     padding: getPadding(cellPadding)
   }
-  console.log(style)
   return (
     <div ref={drop} style={style}>
       {children}
