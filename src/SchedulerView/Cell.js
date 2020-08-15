@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { useDrop } from 'react-dnd'
 import { SchedulerDataContext } from '../index'
 import { v4 as uuidv4 } from 'uuid'
+import { getPadding, getCellHeight } from '../shared/Method'
 
 const Cell = ({ cellData = {}, children, date }) => {
   const { slotId, resource } = cellData
@@ -41,10 +42,10 @@ const Cell = ({ cellData = {}, children, date }) => {
 
   const style = {
     backgroundColor: isOver ? cellBgHoverColor : cellBgColor,
-    height: cellHeight,
-    padding: cellPadding
+    height: getCellHeight(cellHeight),
+    padding: getPadding(cellPadding)
   }
-
+  console.log(style)
   return (
     <div ref={drop} style={style}>
       {children}

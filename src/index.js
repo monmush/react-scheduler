@@ -10,8 +10,6 @@ import 'moment/locale/vi'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { message } from 'antd'
 
-export const SchedulerDataContext = createContext(null)
-
 const Scheduler = ({
   resources,
   shiftTypes,
@@ -41,13 +39,17 @@ const Scheduler = ({
   // config
   const [config, setConfig] = useState({
     currentDate: moment(),
-    locale: 'vi',
+    locale: 'en',
+    schedulerTitle: 'React scheduler',
+    schedulerWidth: '100%',
     cellBgColor: '#ffffff',
     cellBgHoverColor: '#fafafa',
-    cellHeight: '55px',
-    cellPadding: '8px 16px 8px 16px',
+    cellHeight: 55,
+    cellPadding: [8, 12, 8, 12],
     dateFormat: 'DD/MM/YYYY',
     cellPopoverWidth: '200px',
+    resourceTitle: 'Resources',
+    view: [{ viewName: 'Week', viewType: ViewTypes.Week }],
     ...userConfig
   })
   moment.locale(config.locale)
@@ -82,15 +84,18 @@ const Scheduler = ({
   return (
     <DndProvider backend={HTML5Backend}>
       <SchedulerDataContext.Provider value={SchedulerData}>
-        <div className={styles.scheduler}>
+        <div
+          className={styles.Scheduler}
+          style={{ width: config.schedulerWidth }}
+        >
           <SchedulerHeader />
           <table>
             <tbody>
               <tr>
-                <td width='200px' colSpan='1'>
+                <td className={styles.ResourceViewTd}>
                   <ResourceView />
                 </td>
-                <td colSpan='5'>
+                <td>
                   <SchedulerView />
                 </td>
               </tr>
@@ -102,4 +107,10 @@ const Scheduler = ({
   )
 }
 
+export const SchedulerDataContext = createContext(null)
+export const ViewTypes = {
+  Day: 'day',
+  Week: 'week',
+  Month: 'month'
+}
 export default Scheduler

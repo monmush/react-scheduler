@@ -1,14 +1,20 @@
-.schedulerView table > tbody > tr:hover > td {
+.SchedulerView table > tbody > tr:hover > td {
   background: #ffffff !important;
 }
 
-.schedulerView table > tbody > tr > td {
-  padding: 0 !important;
+.SchedulerView table > thead > tr > th {
+  display: table-cell;
 }
 
-.popoverEventTime {
+.PopoverEventTime {
   text-align: center;
   font-weight: 500;
   font-size: 1.5em;
   margin-top: 0.75em;
+}
+
+.Title {
+  height: 46px;
+  text-align: center;
+  line-height: 46px;
 }

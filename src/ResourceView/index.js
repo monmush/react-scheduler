@@ -1,58 +1,19 @@
-import React, { useContext, useCallback } from 'react'
-import { Table, Row, Col, Avatar } from 'antd'
+import React, { useContext } from 'react'
+import { Table } from 'antd'
 import { SchedulerDataContext } from '../index'
 import styles from './styles.module.css'
+import ResourceCellContent from './ResourceCellContent'
+import Title from './Title'
 const index = () => {
-  const {
-    config: { cellHeight, cellPadding },
-    resources,
-    resourceCellContent,
-    events,
-    displayAvatar
-  } = useContext(SchedulerDataContext)
-
-  const style = {
-    height: cellHeight,
-    padding: cellPadding
-  }
-
-  const renderCellContent = useCallback(
-    (record) => {
-      if (resourceCellContent) {
-        return resourceCellContent(record, resources, events)
-      }
-      return null
-    },
-    [resourceCellContent, events]
-  )
+  const { resources } = useContext(SchedulerDataContext)
 
   const columns = [
     {
-      title: 'Nhân viên',
+      title: Title,
       dataIndex: 'name',
       key: 'id',
       render: (text, record) => {
-        return (
-          <Row style={style} justify='start'>
-            {displayAvatar ? (
-              <Col>
-                <Avatar
-                  style={{
-                    verticalAlign: 'middle',
-                    marginRight: '10px'
-                  }}
-                  size='default'
-                >
-                  {text[0]}
-                </Avatar>
-              </Col>
-            ) : null}
-            <Col>
-              <div>{text}</div>
-              {renderCellContent ? renderCellContent(record) : null}
-            </Col>
-          </Row>
-        )
+        return <ResourceCellContent text={text} record={record} />
       }
     }
   ]
@@ -65,8 +26,7 @@ const index = () => {
         size='large'
         dataSource={resources}
         bordered
-        className={styles.resourceView}
-        style={{ width: 230 }}
+        className={styles.ResourceView}
       />
     </div>
   )

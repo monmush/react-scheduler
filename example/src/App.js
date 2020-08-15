@@ -8,7 +8,7 @@ import moment from 'react-scheduler/node_modules/moment'
 
 const App = () => {
   const config = {
-    cellHeight: '65px'
+    cellHeight: '65'
   }
   const resources = [
     {
@@ -160,8 +160,8 @@ const App = () => {
         events={events}
         resources={resources}
         shiftTypes={shiftTypes}
-        resourceCellContent={resourceCellContent}
         displayAvatar={true}
+        resourceCellContent={resourceCellContent}
         config={config}
         firstAction={firstAction}
         secondAction={secondAction}

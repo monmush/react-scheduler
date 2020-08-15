@@ -15,13 +15,13 @@ const PopoverContent = ({ event }) => {
     width: cellPopoverWidth
   }
   return (
-    <div className={styles.popoverContent} style={style}>
+    <div style={style}>
       <div>
         <Badge color='blue' />
         {`${shiftType}`}
       </div>
-      <p className={styles.popoverEventTime}>{`${start} - ${end}`}</p>
-      <Row className={styles.popoverActions}>
+      <p className={styles.PopoverEventTime}>{`${start} - ${end}`}</p>
+      <Row>
         <Button type='text' onClick={firstAction}>
           {firstActionName}
         </Button>

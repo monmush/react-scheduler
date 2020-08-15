@@ -11,38 +11,41 @@ const SchedulerHeader = () => {
   const now = moment()
   const [currentDate, setCurrentDate] = useState(now)
   const [mode, setMode] = useState('week')
-  const month = moment(currentDate).format('MMMM')
 
   // context
-  const { updateConfig, shiftTypes } = useContext(SchedulerDataContext)
+  const {
+    config: { view, schedulerTitle },
+    updateConfig,
+    shiftTypes
+  } = useContext(SchedulerDataContext)
 
-  // quay lại mốc thời gian trước đó
+  // Previous time
   const onPrev = () => {
     setCurrentDate((prev) => moment(prev).subtract(1, 'week'))
   }
 
-  // tiến tới mốc thời gian tiếp theo
+  // Next time
   const onNext = () => {
     setCurrentDate((prev) => moment(prev).add(1, 'week'))
   }
 
-  // listen thay đổi ngày tháng
+  // Listen to date change
   const dateChange = (date) => {
     setCurrentDate(date)
   }
 
-  // thay đổi chế độ xem
+  // Handle view mode change
   const modeChange = (e) => {
     const { value } = e.target
     setMode(value)
   }
 
-  // cập nhật ngày tháng được chọn trong context
+  // Update the currentDate to global context
   useEffect(() => {
     updateConfig({ currentDate: currentDate })
   }, [currentDate])
 
-  //
+  // Render shift types
   const renderShiftTypes =
     !!shiftTypes &&
     shiftTypes.map((shift) => (
@@ -56,44 +59,50 @@ const SchedulerHeader = () => {
     ))
 
   return (
-    <React.Fragment>
-      <Title>{month}</Title>
-      <Row justify='start'>{renderShiftTypes}</Row>
-      <Row justify='space-between' style={{ marginTop: '2em' }}>
-        <Col>
-          <Button
-            onClick={onPrev}
-            style={{ border: 'none' }}
-            icon={<LeftOutlined />}
-          />
-          <DatePicker
-            picker='week'
-            className={styles.input}
-            bordered={false}
-            value={currentDate}
-            onChange={dateChange}
-            suffixIcon={null}
-            allowClear={false}
-          />
-          <Button
-            onClick={onNext}
-            style={{ border: 'none' }}
-            icon={<RightOutlined />}
-          />
-        </Col>
-        <Col>
-          <Radio.Group
-            onChange={modeChange}
-            value={mode}
-            style={{ marginBottom: 8 }}
-          >
-            <Radio.Button value='day'>Ngày</Radio.Button>
-            <Radio.Button value='week'>Tuần</Radio.Button>
-            <Radio.Button value='month'>Tháng</Radio.Button>
-          </Radio.Group>
-        </Col>
+    <Row className={styles.SchedulerHeader}>
+      <Title className={styles.Title}>{schedulerTitle}</Title>
+      <Row justify='space-between' className={styles.Block}>
+        <Row justify='start' className={styles.Block}>
+          {renderShiftTypes}
+        </Row>
+        <Row justify='space-between' className={styles.DateContainer}>
+          <Col>
+            <Button
+              onClick={onPrev}
+              style={{ border: 'none' }}
+              icon={<LeftOutlined />}
+            />
+            <DatePicker
+              picker='week'
+              className={styles.input}
+              bordered={false}
+              value={currentDate}
+              onChange={dateChange}
+              suffixIcon={null}
+              allowClear={false}
+            />
+            <Button
+              onClick={onNext}
+              style={{ border: 'none' }}
+              icon={<RightOutlined />}
+            />
+          </Col>
+          <Col>
+            <Radio.Group
+              onChange={modeChange}
+              value={mode}
+              style={{ marginBottom: 8 }}
+            >
+              {view.map((item) => (
+                <Radio.Button key={item.viewType} value={item.viewType}>
+                  {item.viewName}
+                </Radio.Button>
+              ))}
+            </Radio.Group>
+          </Col>
+        </Row>
       </Row>
-    </React.Fragment>
+    </Row>
   )
 }
 

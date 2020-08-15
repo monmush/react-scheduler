@@ -5,6 +5,8 @@ import moment from 'moment'
 import Cell from './Cell'
 import styles from './styles.module.css'
 import PopoverContent from './PopoverContent'
+import Title from './Title'
+
 const index = () => {
   return (
     <div>
@@ -15,7 +17,7 @@ const index = () => {
 
 const Header = () => {
   const {
-    config: { currentDate, dateFormat, cellPopoverWidth },
+    config: { currentDate, dateFormat },
     events,
     resources,
     resourcesList
@@ -28,7 +30,7 @@ const Header = () => {
     }
 
     const renderColumns = days.map((date) => ({
-      title: date.format('ddd DD/MM'),
+      title: <Title date={date} />,
       key: date.format(dateFormat),
       dataIndex: 'event',
       render: (text, record, index) => {
@@ -37,6 +39,7 @@ const Header = () => {
           (item) => item.date === date.format(dateFormat)
         )
         const eventExisted = eventOnThisDate.length !== 0
+        // Only display record that has the exactly startDate and slotId
         if (eventExisted) {
           return event.map((evt, i) => {
             try {
@@ -63,7 +66,6 @@ const Header = () => {
           })
         }
         return <Cell key={index} cellData={record} date={date} />
-        // Only display record that has the exactly startDate and slotId
       }
     }))
     return renderColumns
@@ -96,7 +98,7 @@ const Header = () => {
       dataSource={columnData}
       pagination={false}
       bordered
-      className={styles.schedulerView}
+      className={styles.SchedulerView}
     />
   )
 }
