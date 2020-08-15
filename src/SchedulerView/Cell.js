@@ -30,7 +30,7 @@ const Cell = ({ cellData = {}, children, date }) => {
       if (cellData.length === 0 || existedShiftInCell === false) {
         addEvent(droppedEvent)
       } else {
-        message.error('Employee already has a shift on the date')
+        message.error('Employee already had a shift')
       }
     },
     collect: (monitor) => ({
