@@ -12,7 +12,7 @@ const App = () => {
   }
   const resources = [
     {
-      name: 'Pham Duc Minh',
+      name: 'Pham Duc Minh Pham Duc Minh Pham Duc Minh',
       role: 'Team Lead',
       id: 0
     },
@@ -69,10 +69,10 @@ const App = () => {
         start: '19:00',
         end: '23:30'
       },
-      resource: 'Pham Duc Minh'
+      resource: 'Pham Duc Minh Pham Duc Minh Pham Duc Minh'
     },
     {
-      id: 3,
+      id: 1,
       event: {
         date: '05/08/2020',
         start: '06:30',
@@ -82,7 +82,7 @@ const App = () => {
       resource: 'Huynh Lam'
     },
     {
-      id: 3,
+      id: 2,
       event: {
         date: '06/08/2020',
         start: '06:30',

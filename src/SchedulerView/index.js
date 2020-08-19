@@ -75,6 +75,7 @@ const Header = () => {
   // Initialize columns data with slotId and empty event
 
   for (let i = 0; i < resources.length; i++) {
+    console.log(i)
     columnData.push({
       slotId: i,
       event: [],
@@ -82,7 +83,7 @@ const Header = () => {
     })
   }
 
-  events.map((evt) => {
+  events.forEach((evt) => {
     columnData[evt.slotId].event.push({
       ...evt.event,
       id: evt.id,
