@@ -1,11 +1,10 @@
 import React, { useContext, useCallback } from 'react'
 import { SchedulerDataContext } from '../index'
-import { getPadding } from '../shared/Method'
 import { Row, Col, Avatar } from 'antd'
 import styles from './styles.module.css'
 const ResourceCellContent = ({ text, record }) => {
   const {
-    config: { cellHeight, cellPadding },
+    config: { cellHeight },
     displayAvatar,
     resourceCellContent,
     resources,
@@ -14,8 +13,7 @@ const ResourceCellContent = ({ text, record }) => {
 
   // Styles
   const style = {
-    height: `${cellHeight}px`,
-    padding: '10px'
+    height: `${cellHeight}px`
   }
 
   // Table content
@@ -30,9 +28,14 @@ const ResourceCellContent = ({ text, record }) => {
   )
 
   return (
-    <Row style={style} className={styles.ResourceCellContent} justify='start'>
+    <Row
+      style={style}
+      className={styles.ResourceCellContent}
+      align='middle'
+      justify='start'
+    >
       {displayAvatar ? (
-        <Col span={6}>
+        <Col style={{ marginRight: '1em' }}>
           <Avatar size='default'>{text[0]}</Avatar>
         </Col>
       ) : null}

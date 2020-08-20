@@ -22,6 +22,8 @@ const Scheduler = ({
   firstActionName,
   secondActionName
 }) => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+
   // Create an array of resources
   const resourcesList = resources.map((item) => item.name)
 
@@ -70,6 +72,7 @@ const Scheduler = ({
     shiftTypes: shiftTypes,
     resourcesList: resourcesList,
     displayAvatar: displayAvatar,
+    windowWidth: windowWidth,
 
     // actions
     updateConfig: updateConfig,
@@ -81,6 +84,9 @@ const Scheduler = ({
     secondActionName: secondActionName
   }
   console.log(SchedulerData)
+  const style = { width: `${windowWidth * 0.16}px` }
+
+  window.addEventListener('resize', () => setWindowWidth(window.innerWidth))
   return (
     <DndProvider backend={HTML5Backend}>
       <SchedulerDataContext.Provider value={SchedulerData}>
@@ -88,11 +94,17 @@ const Scheduler = ({
           className={styles.Scheduler}
           style={{ width: config.schedulerWidth }}
         >
-          <SchedulerHeader />
           <table>
+            <thead>
+              <tr>
+                <td colSpan='2'>
+                  <SchedulerHeader />
+                </td>
+              </tr>
+            </thead>
             <tbody>
               <tr>
-                <td className={styles.ResourceViewTd}>
+                <td style={style}>
                   <ResourceView />
                 </td>
                 <td>

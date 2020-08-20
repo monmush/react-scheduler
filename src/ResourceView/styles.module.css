@@ -1,8 +1,8 @@
-.ResourceView table > thead > tr > th {
-  display: table-cell;
-}
 .ResourceCellContent {
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
+  padding: 10px;
 }
 .ResourceCellContent p:nth-child(1) {
   margin: 0px;
@@ -11,12 +11,30 @@
 .ResourceCellContent > div {
   display: inline-block !important;
 }
-.ResourceView table > tbody {
-  width: 100%;
-  overflow-x: scroll;
-}
+
 .Title {
   height: 46px;
   text-align: center;
   line-height: 46px;
+}
+.ResourceView {
+  overflow: hidden;
+  border: 1px solid #f0f0f0f0;
+}
+.ResourceViewHeader {
+  height: 46px;
+  text-align: center;
+  line-height: 46px;
+  overflow: hidden;
+}
+
+.ResourceViewContent {
+  overflow: auto;
+  margin: 0;
+}
+
+.ResourcesTable th {
+  height: 46px;
+  text-align: center !important;
+  border: 0 !important;
 }
