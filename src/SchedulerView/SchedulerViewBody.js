@@ -38,9 +38,11 @@ const SchedulerViewBody = ({ days }) => {
                     placement='bottom'
                     trigger='hover'
                   >
-                    <Cell key={index} cellData={record} date={date}>
-                      {evt.shiftType}
-                    </Cell>
+                    <div>
+                      <Cell key={index} cellData={record} date={date}>
+                        {evt.shiftType}
+                      </Cell>
+                    </div>
                   </Popover>
                 )
               }
@@ -58,7 +60,6 @@ const SchedulerViewBody = ({ days }) => {
 
   // Initialize columns data with slotId and empty event
   for (let i = 0; i < resources.length; i++) {
-    console.log(i)
     columnData.push({
       slotId: i,
       event: [],
@@ -76,7 +77,7 @@ const SchedulerViewBody = ({ days }) => {
   })
 
   return (
-    <div className={styles.SchedulerViewContent} style={{ overflow: 'auto' }}>
+    <div className={styles.SchedulerViewContent}>
       <div style={{ width: `${schedulerViewWidth}px` }}>
         <Table
           size='large'

@@ -1,3 +1,10 @@
+/* index */
+.ResourceView {
+  overflow: hidden;
+  border: 1px solid #f0f0f0f0;
+}
+
+/* ResourceCellContent */
 .ResourceCellContent {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -12,24 +19,28 @@
   display: inline-block !important;
 }
 
-.ResourceView {
-  overflow: hidden;
-  border: 1px solid #f0f0f0f0;
-}
-.ResourceViewHeader {
-  height: 46px;
-  text-align: center;
-  line-height: 46px;
-  overflow: hidden;
-}
-
-.ResourceViewContent {
+/* ResourceViewBody */
+.ResourceViewBody {
   overflow: auto;
   margin: 0;
+}
+.ResourceViewBodyTableContainer {
+  padding: 0;
+}
+
+/* ResourceViewHeader */
+.ResourceViewHeader {
+  height: 46px;
+  overflow: hidden;
 }
 
 .ResourceViewHeaderTable th {
   height: 46px;
   text-align: center !important;
   border: 0 !important;
+}
+
+.ResourceViewHeaderTableContainer {
+  margin: 0;
+  overflow: scroll hidden;
 }

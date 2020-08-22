@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import { SchedulerDataContext } from '../index'
 import styles from './styles.module.css'
-import ResourcesHeader from './ResourcesHeader'
-import ResourcesBody from './ResourcesBody'
+import ResourceViewHeader from './ResourceViewHeader'
+import ResourceViewBody from './ResourceViewBody'
 
 const index = () => {
   const {
@@ -14,8 +14,8 @@ const index = () => {
       className={styles.ResourceView}
       style={{ width: `${resourcesViewWidth}px` }}
     >
-      <ResourcesHeader />
-      <ResourcesBody />
+      <ResourceViewHeader />
+      <ResourceViewBody />
     </div>
   )
 }

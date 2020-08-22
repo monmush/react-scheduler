@@ -1,4 +1,4 @@
-import React, { useContext, useCallback } from 'react'
+import React, { useContext } from 'react'
 import { SchedulerDataContext } from '../index'
 import { Row, Col, Avatar } from 'antd'
 import styles from './styles.module.css'
@@ -15,18 +15,20 @@ const ResourceCellContent = ({ text, record }) => {
   const style = {
     height: `${cellHeight}px`
   }
+  const content = resourceCellContent(record, resources, events)
 
-  // Table content
-  const renderCellContent = useCallback(
-    (record) => {
-      if (resourceCellContent) {
-        return resourceCellContent(record, resources, events)
-      }
-      return null
-    },
-    [resourceCellContent, events]
+  const renderCellContent = (
+    <Col span={18}>
+      <p>{text}</p>
+      {resourceCellContent ? content : null}
+    </Col>
   )
 
+  const renderAvatar = displayAvatar ? (
+    <Col style={{ marginRight: '1em' }}>
+      <Avatar size='default'>{text[0]}</Avatar>
+    </Col>
+  ) : null
   return (
     <Row
       style={style}
@@ -34,15 +36,8 @@ const ResourceCellContent = ({ text, record }) => {
       align='middle'
       justify='start'
     >
-      {displayAvatar ? (
-        <Col style={{ marginRight: '1em' }}>
-          <Avatar size='default'>{text[0]}</Avatar>
-        </Col>
-      ) : null}
-      <Col span={18}>
-        <p>{text}</p>
-        {renderCellContent ? renderCellContent(record) : null}
-      </Col>
+      {renderAvatar}
+      {renderCellContent}
     </Row>
   )
 }

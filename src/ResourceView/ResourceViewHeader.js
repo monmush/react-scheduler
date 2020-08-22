@@ -13,7 +13,7 @@ const ResourcesHeader = () => {
       className={styles.ResourceViewHeader}
       style={{ width: `${resourcesViewWidth}px` }}
     >
-      <div style={{ overflow: 'scroll hidden', margin: '0px' }}>
+      <div className={styles.ResourceViewHeaderTableContainer}>
         <Table
           columns={[{ title: resourceTitle }]}
           className={styles.ResourceViewHeaderTable}

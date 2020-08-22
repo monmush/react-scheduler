@@ -19,9 +19,7 @@ const Header = () => {
     <div
       className={styles.SchedulerView}
       style={{
-        width: `${schedulerViewWidth + 1}px`,
-        border: '1px solid #f0f0f0',
-        borderRight: '0'
+        width: `${schedulerViewWidth + 1}px`
       }}
     >
       <SchedulerViewHeader days={days} />

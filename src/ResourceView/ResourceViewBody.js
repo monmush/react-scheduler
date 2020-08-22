@@ -3,6 +3,7 @@ import ResourceCellContent from './ResourceCellContent'
 import { SchedulerDataContext } from '../index'
 import { Table } from 'antd'
 import styles from './styles.module.css'
+
 const ResourcesBody = () => {
   const columns = [
     {
@@ -18,12 +19,13 @@ const ResourcesBody = () => {
     resources,
     config: { resourcesViewWidth }
   } = useContext(SchedulerDataContext)
+
   return (
     <div
-      className={styles.ResourceViewContent}
+      className={styles.ResourceViewBody}
       style={{ width: `${resourcesViewWidth}px` }}
     >
-      <div style={{ paddingBottom: 0 }}>
+      <div className={styles.ResourceViewBodyTableContainer}>
         <Table
           columns={columns}
           pagination={false}

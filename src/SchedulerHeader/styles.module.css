@@ -1,12 +1,5 @@
-.icon:hover {
-  color: #1890ff;
-}
-
-.SchedulerHeader {
-  width: 100%;
-}
-
-.Block {
+/* index */
+.FullWidth {
   width: 100%;
 }
 
@@ -16,6 +9,12 @@
   margin-bottom: 1.5em;
 }
 
+/* SchedulerDatePicker */
+.icon:hover {
+  color: #1890ff;
+}
+
+/* ShiftList */
 .TaskCard {
   border: 1px solid #d9d9d9;
   border-radius: 4px;
@@ -23,3 +22,5 @@
   margin-right: 1em;
   margin-bottom: 1em;
 }
+
+/* ViewMode */

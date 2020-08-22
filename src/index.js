@@ -89,6 +89,7 @@ const Scheduler = ({
   }
   console.log(SchedulerData)
   const { schedulerWidth, resourcesViewWidth, schedulerViewWidth } = config
+
   return (
     <DndProvider backend={HTML5Backend}>
       <SchedulerDataContext.Provider value={SchedulerData}>
