@@ -4,9 +4,10 @@ import { SchedulerDataContext } from '../index'
 import { v4 as uuidv4 } from 'uuid'
 import { getPadding, getCellHeight } from '../shared/Method'
 import { message } from 'antd'
+import styles from './styles.module.css'
+
 const Cell = ({ cellData = {}, children, date }) => {
   const { slotId, resource } = cellData
-  console.log(cellData)
   // react-dnd
   const [{ isOver }, drop] = useDrop({
     accept: 'shift',
@@ -45,7 +46,8 @@ const Cell = ({ cellData = {}, children, date }) => {
       cellBgHoverColor,
       cellHeight,
       cellPadding,
-      dateFormat
+      dateFormat,
+      schedulerViewWidth
     },
     addEvent
   } = useContext(SchedulerDataContext)
@@ -53,10 +55,11 @@ const Cell = ({ cellData = {}, children, date }) => {
   const style = {
     backgroundColor: isOver ? cellBgHoverColor : cellBgColor,
     height: getCellHeight(cellHeight),
-    padding: getPadding(cellPadding)
+    padding: getPadding(cellPadding),
+    width: schedulerViewWidth / 7
   }
   return (
-    <div ref={drop} style={style}>
+    <div ref={drop} style={style} className={styles.Cell}>
       {children}
     </div>
   )

@@ -1,20 +1,49 @@
-.SchedulerView table > tbody > tr:hover > td {
-  background: #ffffff !important;
+/* Cell */
+.Cell {
+  border-right: 1px solid #f0f0f0;
 }
 
-.SchedulerView table > thead > tr > th {
-  display: table-cell;
+/* index */
+.ant-table-fixed {
+  table-layout: fixed;
+}
+.SchedulerView {
+  border: 1px solid #f0f0f0;
+  border-right: 0;
 }
 
+/* PopoverContent */
 .PopoverEventTime {
   text-align: center;
   font-weight: 500;
   font-size: 1.5em;
   margin-top: 0.75em;
+  width: 100%;
 }
 
-.Title {
+/* SchedulerViewBody */
+.ScheduleViewBodyTable table > tbody > tr:hover > td {
+  background: #ffffff !important;
+}
+.ScheduleViewBodyTable table > thead > tr > th {
+  display: table-cell;
+}
+.SchedulerViewContent {
+  overflow: auto;
+}
+
+/* SchedulerViewHeader */
+.SchedulerViewHeader {
+  overflow: hidden;
   height: 46px;
-  text-align: center;
-  line-height: 46px;
+}
+
+.ScheduleViewHeaderTable th {
+  height: 46px;
+  text-align: center !important;
+  border-bottom: 0 !important;
+  border-right: 1px solid #f0f0f0;
+}
+.SchedulerViewHeaderContainer {
+  overflow: scroll hidden;
 }

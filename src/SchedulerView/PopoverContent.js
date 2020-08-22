@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Badge, Row, Button } from 'antd'
 import styles from './styles.module.css'
 import { SchedulerDataContext } from '../index'
+
 const PopoverContent = ({ event }) => {
   const {
     config: { cellPopoverWidth },
@@ -15,11 +16,11 @@ const PopoverContent = ({ event }) => {
     width: cellPopoverWidth
   }
   return (
-    <div style={style}>
-      <div>
+    <Row style={style}>
+      <Row>
         <Badge color='blue' />
         {`${shiftType}`}
-      </div>
+      </Row>
       <p className={styles.PopoverEventTime}>{`${start} - ${end}`}</p>
       <Row>
         <Button type='text' onClick={firstAction}>
@@ -29,7 +30,7 @@ const PopoverContent = ({ event }) => {
           {secondActionName}
         </Button>
       </Row>
-    </div>
+    </Row>
   )
 }
 

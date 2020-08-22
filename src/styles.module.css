@@ -4,15 +4,10 @@ body {
 }
 
 .Scheduler > table {
-  width: 100%;
   table-layout: fixed;
 }
 .Scheduler > table > tbody > tr > td {
   padding: 0;
-}
-.ResourceViewTd {
-  width: 20%;
-  overflow: scroll;
 }
 table > thead > tr > th {
   padding: 0 !important;

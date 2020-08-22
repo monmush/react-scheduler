@@ -1,8 +1,15 @@
-.ResourceView table > thead > tr > th {
-  display: table-cell;
+/* index */
+.ResourceView {
+  overflow: hidden;
+  border: 1px solid #f0f0f0f0;
 }
+
+/* ResourceCellContent */
 .ResourceCellContent {
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
+  padding: 10px;
 }
 .ResourceCellContent p:nth-child(1) {
   margin: 0px;
@@ -11,12 +18,29 @@
 .ResourceCellContent > div {
   display: inline-block !important;
 }
-.ResourceView table > tbody {
-  width: 100%;
-  overflow-x: scroll;
+
+/* ResourceViewBody */
+.ResourceViewBody {
+  overflow: auto;
+  margin: 0;
 }
-.Title {
+.ResourceViewBodyTableContainer {
+  padding: 0;
+}
+
+/* ResourceViewHeader */
+.ResourceViewHeader {
   height: 46px;
-  text-align: center;
-  line-height: 46px;
+  overflow: hidden;
+}
+
+.ResourceViewHeaderTable th {
+  height: 46px;
+  text-align: center !important;
+  border: 0 !important;
+}
+
+.ResourceViewHeaderTableContainer {
+  margin: 0;
+  overflow: scroll hidden;
 }
