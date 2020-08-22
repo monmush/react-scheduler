@@ -1,11 +1,14 @@
-.SchedulerView table > tbody > tr:hover > td {
+.ScheduleViewBodyTable table > tbody > tr:hover > td {
   background: #ffffff !important;
 }
-
-.SchedulerView table > thead > tr > th {
+.ScheduleViewBodyTable table > thead > tr > th {
   display: table-cell;
 }
 
+.SchedulerViewHeader {
+  overflow: hidden;
+  height: 46px;
+}
 .PopoverEventTime {
   text-align: center;
   font-weight: 500;
@@ -13,8 +16,14 @@
   margin-top: 0.75em;
 }
 
-.Title {
+.ScheduleViewHeaderTable th {
   height: 46px;
-  text-align: center;
-  line-height: 46px;
+  text-align: center !important;
+  border-bottom: 0 !important;
+  border-right: 1px solid #f0f0f0;
 }
+
+.ant-table-fixed {
+  table-layout: fixed;
+}
+

@@ -12,11 +12,6 @@
   display: inline-block !important;
 }
 
-.Title {
-  height: 46px;
-  text-align: center;
-  line-height: 46px;
-}
 .ResourceView {
   overflow: hidden;
   border: 1px solid #f0f0f0f0;
@@ -33,7 +28,7 @@
   margin: 0;
 }
 
-.ResourcesTable th {
+.ResourceViewHeaderTable th {
   height: 46px;
   text-align: center !important;
   border: 0 !important;

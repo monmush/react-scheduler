@@ -5,11 +5,15 @@ import ResourcesHeader from './ResourcesHeader'
 import ResourcesBody from './ResourcesBody'
 
 const index = () => {
-  const { windowWidth } = useContext(SchedulerDataContext)
-  const responsiveWidth = { width: `${windowWidth * 0.16}px` }
+  const {
+    config: { resourcesViewWidth }
+  } = useContext(SchedulerDataContext)
 
   return (
-    <div className={styles.ResourceView} style={responsiveWidth}>
+    <div
+      className={styles.ResourceView}
+      style={{ width: `${resourcesViewWidth}px` }}
+    >
       <ResourcesHeader />
       <ResourcesBody />
     </div>

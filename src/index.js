@@ -22,7 +22,9 @@ const Scheduler = ({
   firstActionName,
   secondActionName
 }) => {
+  // Determine window width
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+  window.addEventListener('resize', () => setWindowWidth(window.innerWidth))
 
   // Create an array of resources
   const resourcesList = resources.map((item) => item.name)
@@ -43,7 +45,9 @@ const Scheduler = ({
     currentDate: moment(),
     locale: 'en',
     schedulerTitle: 'React scheduler',
-    schedulerWidth: '100%',
+    schedulerWidth: windowWidth * 0.9,
+    resourcesViewWidth: Math.floor(windowWidth * 0.9 * 0.15),
+    schedulerViewWidth: Math.floor((windowWidth * 0.9 * 0.8) / 7) * 7,
     cellBgColor: '#ffffff',
     cellBgHoverColor: '#fafafa',
     cellHeight: 55,
@@ -84,15 +88,13 @@ const Scheduler = ({
     secondActionName: secondActionName
   }
   console.log(SchedulerData)
-  const style = { width: `${windowWidth * 0.16}px` }
-
-  window.addEventListener('resize', () => setWindowWidth(window.innerWidth))
+  const { schedulerWidth, resourcesViewWidth, schedulerViewWidth } = config
   return (
     <DndProvider backend={HTML5Backend}>
       <SchedulerDataContext.Provider value={SchedulerData}>
         <div
           className={styles.Scheduler}
-          style={{ width: config.schedulerWidth }}
+          style={{ width: `${schedulerWidth}px` }}
         >
           <table>
             <thead>
@@ -104,10 +106,10 @@ const Scheduler = ({
             </thead>
             <tbody>
               <tr>
-                <td style={style}>
+                <td style={{ width: `${resourcesViewWidth}px` }}>
                   <ResourceView />
                 </td>
-                <td>
+                <td style={{ width: `${schedulerViewWidth}px` }}>
                   <SchedulerView />
                 </td>
               </tr>

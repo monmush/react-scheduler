@@ -155,7 +155,7 @@ const App = () => {
     console.log('Action 2')
   }
   return (
-    <div style={{ padding: '10em' }}>
+    <div style={{ margin: '0' }}>
       <Scheduler
         events={events}
         resources={resources}

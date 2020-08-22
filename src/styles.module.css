@@ -4,7 +4,6 @@ body {
 }
 
 .Scheduler > table {
-  /* width: 100%; */
   table-layout: fixed;
 }
 .Scheduler > table > tbody > tr > td {

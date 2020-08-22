@@ -14,13 +14,14 @@ const ResourcesBody = () => {
       }
     }
   ]
-  const { resources, windowWidth } = useContext(SchedulerDataContext)
-  const responsiveWidth = { width: `${windowWidth * 0.16}px` }
-
+  const {
+    resources,
+    config: { resourcesViewWidth }
+  } = useContext(SchedulerDataContext)
   return (
     <div
       className={styles.ResourceViewContent}
-      style={{ width: responsiveWidth }}
+      style={{ width: `${resourcesViewWidth}px` }}
     >
       <div style={{ paddingBottom: 0 }}>
         <Table
