@@ -20,7 +20,8 @@ const Scheduler = ({
   firstAction,
   secondAction,
   firstActionName,
-  secondActionName
+  secondActionName,
+  onShiftDrop
 }) => {
   // Determine window width
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
@@ -36,9 +37,6 @@ const Scheduler = ({
       ...evt,
       slotId: resourcesList.indexOf(evt.resource)
     }))
-
-  // List of events which will be displayed on the scheduler
-  const [events, setEvents] = useState(formattedUserEvents)
 
   // config
   const [config, setConfig] = useState({
@@ -60,10 +58,6 @@ const Scheduler = ({
   })
   moment.locale(config.locale)
 
-  const addEvent = (newEvent) => {
-    message.success(JSON.stringify(newEvent))
-    setEvents((prev) => [...prev, newEvent])
-  }
   const updateConfig = (args) => {
     setConfig((prev) => ({ ...prev, ...args }))
   }
@@ -72,7 +66,7 @@ const Scheduler = ({
     // settings
     config: config,
     resources: resources,
-    events: events,
+    events: formattedUserEvents,
     shiftTypes: shiftTypes,
     resourcesList: resourcesList,
     displayAvatar: displayAvatar,
@@ -80,12 +74,12 @@ const Scheduler = ({
 
     // actions
     updateConfig: updateConfig,
-    addEvent: addEvent,
+    onShiftDrop: onShiftDrop,
     resourceCellContent: resourceCellContent,
     firstAction: firstAction,
     secondAction: secondAction,
-    firstActionName: firstActionName,
-    secondActionName: secondActionName
+    firstActionName: firstActionName || 'Action 1',
+    secondActionName: secondActionName || 'Action 2'
   }
   console.log(SchedulerData)
   const { schedulerWidth, resourcesViewWidth, schedulerViewWidth } = config

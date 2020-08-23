@@ -8,6 +8,19 @@ import styles from './styles.module.css'
 
 const Cell = ({ cellData = {}, children, date }) => {
   const { slotId, resource } = cellData
+  // context
+  const {
+    config: {
+      cellBgColor,
+      cellBgHoverColor,
+      cellHeight,
+      cellPadding,
+      dateFormat,
+      schedulerViewWidth
+    },
+    onShiftDrop
+  } = useContext(SchedulerDataContext)
+
   // react-dnd
   const [{ isOver }, drop] = useDrop({
     accept: 'shift',
@@ -29,7 +42,7 @@ const Cell = ({ cellData = {}, children, date }) => {
       // Check if shift already existed
       // existed => not allow to drop new shift to the cell
       if (cellData.length === 0 || existedShiftInCell === false) {
-        addEvent(droppedEvent)
+        onShiftDrop(droppedEvent)
       } else {
         message.error('Employee already had a shift')
       }
@@ -38,19 +51,6 @@ const Cell = ({ cellData = {}, children, date }) => {
       isOver: !!monitor.isOver()
     })
   })
-
-  // context
-  const {
-    config: {
-      cellBgColor,
-      cellBgHoverColor,
-      cellHeight,
-      cellPadding,
-      dateFormat,
-      schedulerViewWidth
-    },
-    addEvent
-  } = useContext(SchedulerDataContext)
 
   const style = {
     backgroundColor: isOver ? cellBgHoverColor : cellBgColor,
