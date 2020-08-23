@@ -2,7 +2,9 @@
 body {
   box-sizing: border-box;
 }
-
+.Scheduler {
+  margin: 0 auto;
+}
 .Scheduler > table {
   table-layout: fixed;
 }

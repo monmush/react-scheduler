@@ -7,10 +7,12 @@ import { SchedulerDataContext } from '../index'
 
 const SchedulerDatePicker = () => {
   // context
-  const { updateConfig } = useContext(SchedulerDataContext)
+  const {
+    updateConfig,
+    config: { currentDate: defaultDate }
+  } = useContext(SchedulerDataContext)
 
-  const now = moment()
-  const [currentDate, setCurrentDate] = useState(now)
+  const [currentDate, setCurrentDate] = useState(defaultDate)
 
   // Previous time
   const onPrev = () => {

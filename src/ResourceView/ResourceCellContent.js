@@ -18,7 +18,7 @@ const ResourceCellContent = ({ text, record }) => {
   const content = resourceCellContent(record, resources, events)
 
   const renderCellContent = (
-    <Col span={18}>
+    <Col>
       <p>{text}</p>
       {resourceCellContent ? content : null}
     </Col>
@@ -29,6 +29,7 @@ const ResourceCellContent = ({ text, record }) => {
       <Avatar size='default'>{text[0]}</Avatar>
     </Col>
   ) : null
+
   return (
     <Row
       style={style}

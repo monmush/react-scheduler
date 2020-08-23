@@ -3,7 +3,7 @@ export const sampleEvents = [
     id: 0,
     event: {
       date: '05/08/2020',
-      shiftType: 'Ca tối',
+      shiftType: 'Shift 1',
       start: '19:00',
       end: '23:30'
     },
@@ -15,7 +15,7 @@ export const sampleEvents = [
       date: '05/08/2020',
       start: '06:30',
       end: '11:30',
-      shiftType: 'Ca sáng'
+      shiftType: 'Shift 2'
     },
     resource: 'Huynh Lam'
   },
@@ -25,7 +25,7 @@ export const sampleEvents = [
       date: '06/08/2020',
       start: '06:30',
       end: '11:30',
-      shiftType: 'Ca sáng'
+      shiftType: 'Shift 3'
     },
     resource: 'Huynh Lam'
   },
@@ -35,7 +35,7 @@ export const sampleEvents = [
       date: '06/07/2020',
       start: '06:30',
       end: '11:30',
-      shiftType: 'Ca sáng'
+      shiftType: 'Shift 1'
     },
     resource: 'Huynh Lam'
   },
@@ -45,7 +45,7 @@ export const sampleEvents = [
       date: '09/08/2020',
       start: '06:30',
       end: '11:30',
-      shiftType: 'Ca sáng'
+      shiftType: 'Shift 2'
     },
     resource: 'Hoang Thi Thu Hien'
   },
@@ -55,7 +55,7 @@ export const sampleEvents = [
       date: '07/08/2020',
       start: '06:30',
       end: '11:30',
-      shiftType: 'Ca sáng'
+      shiftType: 'Shift 3'
     },
     resource: 'Hoang Thi Thu Hien'
   }
@@ -64,29 +64,30 @@ export const sampleEvents = [
 export const sampleShiftTypes = [
   {
     id: 0,
-    name: 'Ca sáng',
+    name: 'Shift 1',
     start: '6:30',
     end: '11:30'
   },
   {
     id: 1,
-    name: 'Ca trưa',
+    name: 'Shift 2',
     start: '11:00',
     end: '16:00'
   },
   {
     id: 2,
-    name: 'Ca chiều',
+    name: 'Shift 3',
     start: '15:00',
     end: '20:00'
   },
   {
     id: 3,
-    name: 'Ca tối',
+    name: 'Shift 4',
     start: '19:00',
     end: '23:30'
   }
 ]
+
 export const sampleResources = [
   {
     name: 'Pham Duc Minh Pham Duc Minh Pham Duc Minh',

@@ -1,14 +1,12 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState, useEffect } from 'react'
 import '../node_modules/antd/dist/antd.min.css'
 import styles from './styles.module.css'
 import SchedulerHeader from './SchedulerHeader/index'
 import ResourceView from './ResourceView/index'
 import SchedulerView from './SchedulerView/index'
 import { DndProvider } from 'react-dnd'
-import moment from 'moment'
-import 'moment/locale/vi'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import { message } from 'antd'
+import moment from 'moment'
 
 const Scheduler = ({
   resources,
@@ -21,11 +19,14 @@ const Scheduler = ({
   secondAction,
   firstActionName,
   secondActionName,
-  onShiftDrop
+  onShiftDrop,
+  getSchedulerData
 }) => {
   // Determine window width
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-  window.addEventListener('resize', () => setWindowWidth(window.innerWidth))
+  window.addEventListener('resize', () =>
+    setWindowWidth(Math.floor(window.innerWidth))
+  )
 
   // Create an array of resources
   const resourcesList = resources.map((item) => item.name)
@@ -38,14 +39,21 @@ const Scheduler = ({
       slotId: resourcesList.indexOf(evt.resource)
     }))
 
-  // config
+  // Calculate scheduler size base on viewport
+  const schedulerWidth = windowWidth * 0.9
+  const resourcesViewWidth =
+    Math.floor(windowWidth * 0.9) -
+    Math.floor((windowWidth * 0.9 * 0.8) / 7) * 7
+  const schedulerViewWidth = Math.floor((windowWidth * 0.9 * 0.8) / 7) * 7
+
+  // Config
   const [config, setConfig] = useState({
     currentDate: moment(),
     locale: 'en',
-    schedulerTitle: 'React scheduler',
+    schedulerTitle: 'React simple scheduler',
     schedulerWidth: windowWidth * 0.9,
-    resourcesViewWidth: Math.floor(windowWidth * 0.9 * 0.15),
-    schedulerViewWidth: Math.floor((windowWidth * 0.9 * 0.8) / 7) * 7,
+    resourcesViewWidth: resourcesViewWidth,
+    schedulerViewWidth: schedulerViewWidth,
     cellBgColor: '#ffffff',
     cellBgHoverColor: '#fafafa',
     cellHeight: 55,
@@ -56,6 +64,7 @@ const Scheduler = ({
     view: [{ viewName: 'Week', viewType: ViewTypes.Week }],
     ...userConfig
   })
+
   moment.locale(config.locale)
 
   const updateConfig = (args) => {
@@ -63,7 +72,7 @@ const Scheduler = ({
   }
 
   const SchedulerData = {
-    // settings
+    // Settings
     config: config,
     resources: resources,
     events: formattedUserEvents,
@@ -72,7 +81,7 @@ const Scheduler = ({
     displayAvatar: displayAvatar,
     windowWidth: windowWidth,
 
-    // actions
+    // Actions
     updateConfig: updateConfig,
     onShiftDrop: onShiftDrop,
     resourceCellContent: resourceCellContent,
@@ -81,8 +90,11 @@ const Scheduler = ({
     firstActionName: firstActionName || 'Action 1',
     secondActionName: secondActionName || 'Action 2'
   }
-  console.log(SchedulerData)
-  const { schedulerWidth, resourcesViewWidth, schedulerViewWidth } = config
+
+  // Scheduler data getter function
+  useEffect(() => {
+    getSchedulerData(SchedulerData)
+  }, [SchedulerData])
 
   return (
     <DndProvider backend={HTML5Backend}>
@@ -122,4 +134,5 @@ export const ViewTypes = {
   Week: 'week',
   Month: 'month'
 }
+
 export default Scheduler

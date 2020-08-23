@@ -6,17 +6,15 @@
 
 /* ResourceCellContent */
 .ResourceCellContent {
-  overflow: hidden;
+  overflow-y: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: nowrap !important;
+  flex-flow: nowrap !important;
   padding: 10px;
+  width: auto;
 }
 .ResourceCellContent p:nth-child(1) {
   margin: 0px;
-}
-
-.ResourceCellContent > div {
-  display: inline-block !important;
 }
 
 /* ResourceViewBody */

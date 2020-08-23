@@ -7,12 +7,13 @@ import 'react-scheduler/node_modules/react-dnd-html5-backend'
 import moment from 'react-scheduler/node_modules/moment'
 import { message } from 'antd'
 import { sampleEvents, sampleShiftTypes, sampleResources } from './SampleData'
+import './index.css'
 
 const App = () => {
   const config = {
-    cellHeight: '65'
+    cellHeight: '65',
+    currentDate: moment('05/08/2020', 'DD/MM/YYYY')
   }
-
   const [data, setData] = useState({
     events: sampleEvents,
     shiftTypes: sampleShiftTypes,
@@ -31,7 +32,7 @@ const App = () => {
     const pStyle = {
       margin: '0'
     }
-    
+
     const shiftInMonth = events.filter(
       (item) =>
         item.resource === record.name &&
@@ -46,20 +47,24 @@ const App = () => {
     )
   }
   const firstAction = () => {
-    console.log('Action 1')
+    message.success('Action 1')
   }
 
   const secondAction = () => {
-    console.log('Action 2')
+    message.success('Action 2')
   }
 
   const onShiftDrop = (event) => {
-    message.success(event)
+    message.success(JSON.stringify(event))
     setData((prev) => ({ ...prev, events: [...prev.events, event] }))
   }
 
+  const getSchedulerData = (schedulerData) => {
+    console.log(schedulerData)
+  }
+
   return (
-    <div style={{ margin: '0' }}>
+    <div className='ScheudlerContainer'>
       <Scheduler
         events={events}
         resources={resources}
@@ -69,9 +74,10 @@ const App = () => {
         config={config}
         firstAction={firstAction}
         secondAction={secondAction}
-        firstActionName={'Xoá'}
-        secondActionName={'Đổi ca'}
+        firstActionName={'Delete'}
+        secondActionName={'Swap'}
         onShiftDrop={onShiftDrop}
+        getSchedulerData={getSchedulerData}
       />
     </div>
   )

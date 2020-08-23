@@ -14,7 +14,6 @@ const Header = () => {
   for (let i = 0; i <= 6; i++) {
     days.push(moment(weekStart).add(i, 'days'))
   }
-
   return (
     <div
       className={styles.SchedulerView}
