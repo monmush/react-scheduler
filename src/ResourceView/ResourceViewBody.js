@@ -3,7 +3,7 @@ import ResourceCellContent from './ResourceCellContent'
 import { SchedulerDataContext } from '../index'
 import { Table } from 'antd'
 import styles from './styles.module.css'
-
+import { ScrollSyncPane } from 'react-scroll-sync'
 const ResourcesBody = () => {
   const columns = [
     {
@@ -21,20 +21,22 @@ const ResourcesBody = () => {
   } = useContext(SchedulerDataContext)
 
   return (
-    <div
-      className={styles.ResourceViewBody}
-      style={{ width: `${resourcesViewWidth}px` }}
-    >
-      <div className={styles.ResourceViewBodyTableContainer}>
-        <Table
-          columns={columns}
-          pagination={false}
-          size='large'
-          dataSource={resources}
-          bordered={false}
-        />
+    <ScrollSyncPane group='1'>
+      <div
+        className={styles.ResourceViewBody}
+        style={{ width: `${resourcesViewWidth}px`, maxHeight: '360px' }}
+      >
+        <div className={styles.ResourceViewBodyTableContainer}>
+          <Table
+            columns={columns}
+            pagination={false}
+            size='large'
+            dataSource={resources}
+            bordered={false}
+          />
+        </div>
       </div>
-    </div>
+    </ScrollSyncPane>
   )
 }
 

@@ -108,5 +108,50 @@ export const sampleResources = [
     name: 'Ngo Duc Duy',
     id: 3,
     role: 'BASIS'
+  },
+  {
+    name: 'Ngo Duc Duy',
+    id: 4,
+    role: 'BASIS'
+  },
+  {
+    name: 'Ngo Duc Duy',
+    id: 5,
+    role: 'BASIS'
+  },
+  {
+    name: 'Ngo Duc Duy',
+    id: 6,
+    role: 'BASIS'
+  },
+  {
+    name: 'Ngo Duc Duy',
+    id: 7,
+    role: 'BASIS'
+  },
+  {
+    name: 'Ngo Duc Duy',
+    id: 8,
+    role: 'BASIS'
+  },
+  {
+    name: 'Ngo Duc Duy',
+    id: 9,
+    role: 'BASIS'
+  },
+  {
+    name: 'Ngo Duc Duy',
+    id: 10,
+    role: 'BASIS'
+  },
+  {
+    name: 'Ngo Duc Duy',
+    id: 11,
+    role: 'BASIS'
+  },
+  {
+    name: 'Ngo Duc Duy',
+    id: 12,
+    role: 'BASIS'
   }
 ]

@@ -7,7 +7,7 @@ import SchedulerView from './SchedulerView/index'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import moment from 'moment'
-
+import { ScrollSync } from 'react-scroll-sync'
 const Scheduler = ({
   resources,
   shiftTypes,
@@ -99,30 +99,32 @@ const Scheduler = ({
   return (
     <DndProvider backend={HTML5Backend}>
       <SchedulerDataContext.Provider value={SchedulerData}>
-        <div
-          className={styles.Scheduler}
-          style={{ width: `${schedulerWidth}px` }}
-        >
-          <table>
-            <thead>
-              <tr>
-                <td colSpan='2'>
-                  <SchedulerHeader />
-                </td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style={{ width: `${resourcesViewWidth}px` }}>
-                  <ResourceView />
-                </td>
-                <td style={{ width: `${schedulerViewWidth}px` }}>
-                  <SchedulerView />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <ScrollSync>
+          <div
+            className={styles.Scheduler}
+            style={{ width: `${schedulerWidth}px` }}
+          >
+            <table>
+              <thead>
+                <tr>
+                  <td colSpan='2'>
+                    <SchedulerHeader />
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style={{ width: `${resourcesViewWidth}px` }}>
+                    <ResourceView />
+                  </td>
+                  <td style={{ width: `${schedulerViewWidth}px` }}>
+                    <SchedulerView />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </ScrollSync>
       </SchedulerDataContext.Provider>
     </DndProvider>
   )

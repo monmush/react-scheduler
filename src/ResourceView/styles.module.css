@@ -19,8 +19,8 @@
 
 /* ResourceViewBody */
 .ResourceViewBody {
-  overflow: auto;
   margin: 0;
+  overflow: auto;
 }
 .ResourceViewBodyTableContainer {
   padding: 0;

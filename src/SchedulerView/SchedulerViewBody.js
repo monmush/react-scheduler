@@ -4,7 +4,7 @@ import { SchedulerDataContext } from '../index'
 import { Table, Popover } from 'antd'
 import Cell from './Cell'
 import PopoverContent from './PopoverContent'
-
+import { ScrollSyncPane } from 'react-scroll-sync'
 const SchedulerViewBody = ({ days }) => {
   const {
     config: { dateFormat, schedulerViewWidth },
@@ -77,18 +77,25 @@ const SchedulerViewBody = ({ days }) => {
   })
 
   return (
-    <div className={styles.SchedulerViewContent}>
-      <div style={{ width: `${schedulerViewWidth}px` }}>
-        <Table
-          size='large'
-          columns={getCurrentWeekDays()}
-          dataSource={columnData}
-          pagination={false}
-          bordered={false}
-          className={styles.ScheduleViewBodyTable}
-        />
+    <ScrollSyncPane group='1'>
+      <div className={styles.SchedulerViewContent}>
+        <div
+          style={{
+            width: `${schedulerViewWidth}px`,
+            maxHeight: '360px'
+          }}
+        >
+          <Table
+            size='large'
+            columns={getCurrentWeekDays()}
+            dataSource={columnData}
+            pagination={false}
+            bordered={false}
+            className={styles.ScheduleViewBodyTable}
+          />
+        </div>
       </div>
-    </div>
+    </ScrollSyncPane>
   )
 }
 
