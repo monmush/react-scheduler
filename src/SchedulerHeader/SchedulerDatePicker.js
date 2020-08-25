@@ -1,27 +1,31 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Col, Button, DatePicker } from 'antd'
+import { Col, Button } from 'antd'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import styles from './styles.module.css'
-import moment from 'moment'
 import { SchedulerDataContext } from '../index'
+import dayjs from 'dayjs'
+import dayjsGenerateConfig from 'rc-picker/lib/generate/dayjs'
+import generatePicker from 'antd/es/date-picker/generatePicker'
+import 'antd/es/date-picker/style/index'
 
+const DatePicker = generatePicker(dayjsGenerateConfig)
 const SchedulerDatePicker = () => {
   // context
   const {
     updateConfig,
-    config: { currentDate: defaultDate }
+    config: { currentDate: defaultDate, dateFormat }
   } = useContext(SchedulerDataContext)
 
   const [currentDate, setCurrentDate] = useState(defaultDate)
 
   // Previous time
   const onPrev = () => {
-    setCurrentDate((prev) => moment(prev).subtract(1, 'week'))
+    setCurrentDate((prev) => dayjs(prev, dateFormat).subtract(1, 'week'))
   }
 
   // Next time
   const onNext = () => {
-    setCurrentDate((prev) => moment(prev).add(1, 'week'))
+    setCurrentDate((prev) => dayjs(prev, dateFormat).add(1, 'week'))
   }
 
   // Listen to date change

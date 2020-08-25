@@ -6,8 +6,9 @@ import ResourceView from './ResourceView/index'
 import SchedulerView from './SchedulerView/index'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import moment from 'moment'
+import dayjs from 'dayjs'
 import { ScrollSync } from 'react-scroll-sync'
+
 const Scheduler = ({
   resources,
   shiftTypes,
@@ -48,7 +49,7 @@ const Scheduler = ({
 
   // Config
   const [config, setConfig] = useState({
-    currentDate: moment(),
+    currentDate: dayjs(),
     locale: 'en',
     schedulerTitle: 'React simple scheduler',
     schedulerWidth: windowWidth * 0.9,
@@ -64,8 +65,6 @@ const Scheduler = ({
     view: [{ viewName: 'Week', viewType: ViewTypes.Week }],
     ...userConfig
   })
-
-  moment.locale(config.locale)
 
   const updateConfig = (args) => {
     setConfig((prev) => ({ ...prev, ...args }))

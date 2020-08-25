@@ -4,7 +4,7 @@ import 'react-scheduler/dist/index.css'
 import 'react-scheduler/node_modules/antd/dist/antd.min.css'
 import 'react-scheduler/node_modules/react-dnd'
 import 'react-scheduler/node_modules/react-dnd-html5-backend'
-import moment from 'react-scheduler/node_modules/moment'
+import dayjs from 'react-scheduler/node_modules/dayjs'
 import { message } from 'antd'
 import { sampleEvents, sampleShiftTypes, sampleResources } from './SampleData'
 import './index.css'
@@ -12,7 +12,8 @@ import './index.css'
 const App = () => {
   const config = {
     cellHeight: '65',
-    currentDate: moment('05/08/2020', 'DD/MM/YYYY')
+    currentDate: dayjs('05/08/2020', 'DD/MM/YYYY'),
+    locale: 'vi'
   }
   const [data, setData] = useState({
     events: sampleEvents,
@@ -23,8 +24,8 @@ const App = () => {
 
   const resourceCellContent = (record, resources, events) => {
     const dateFormat = 'DD/MM/YYYY'
-    const startOfMonth = moment().startOf('month')
-    const endOfMonth = moment().endOf('month')
+    const startOfMonth = dayjs().startOf('month')
+    const endOfMonth = dayjs().endOf('month')
     const resourceCellContentStyle = {
       fontSize: '10px',
       display: 'block'
@@ -36,8 +37,8 @@ const App = () => {
     const shiftInMonth = events.filter(
       (item) =>
         item.resource === record.name &&
-        startOfMonth < moment(item.event.start, dateFormat) &&
-        moment(item.event.start, dateFormat) < endOfMonth
+        startOfMonth < dayjs(item.event.start, dateFormat) &&
+        dayjs(item.event.start, dateFormat) < endOfMonth
     )
     return (
       <div style={resourceCellContentStyle}>

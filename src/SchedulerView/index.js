@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { SchedulerDataContext } from '../index'
-import moment from 'moment'
+import dayjs from 'dayjs'
 import styles from './styles.module.css'
 import SchedulerViewHeader from './SchedulerViewHeader'
 import SchedulerViewBody from './SchedulerViewBody'
@@ -9,10 +9,10 @@ const Header = () => {
   const {
     config: { currentDate, schedulerViewWidth }
   } = useContext(SchedulerDataContext)
-  const weekStart = moment(currentDate).startOf('week')
+  const weekStart = dayjs(currentDate).startOf('week')
   const days = []
   for (let i = 0; i <= 6; i++) {
-    days.push(moment(weekStart).add(i, 'days'))
+    days.push(dayjs(weekStart).add(i, 'days'))
   }
   return (
     <div
