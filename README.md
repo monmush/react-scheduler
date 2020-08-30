@@ -1,28 +1,40 @@
 # react-scheduler
 
-> A react scheduler
-
-[![NPM](https://img.shields.io/npm/v/react-scheduler.svg)](https://www.npmjs.com/package/react-scheduler) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+> A lightweight react scheduler used best for shifts planning
 
 ## Install
 
 ```bash
-npm install --save react-scheduler
+npm install --save react-simple-scheduler
 ```
 
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React from 'react'
 
-import MyComponent from 'react-scheduler'
-import 'react-scheduler/dist/index.css'
+import Scheduler from 'react-simple-scheduler'
+import 'react-simple-scheduler/dist/index.css'
 
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
+export default function App = () => {
+  const [data, setData] = useState({
+    events: sampleEvents,
+    shiftTypes: sampleShiftTypes,
+    resources: sampleResources
+  })
+  const { events, shiftTypes, resources } = data
+
+  return (
+    <React.Fragment>
+      <Scheduler
+        events={events}
+        resources={resources}
+        shiftTypes={shiftTypes}
+      />
+    </React.Fragment>
+  )
 }
+
 ```
 
 ## License

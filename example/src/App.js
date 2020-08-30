@@ -70,15 +70,15 @@ const App = () => {
         events={events}
         resources={resources}
         shiftTypes={shiftTypes}
-        displayAvatar={true}
-        resourceCellContent={resourceCellContent}
-        config={config}
-        firstAction={firstAction}
-        secondAction={secondAction}
-        firstActionName={'Delete'}
-        secondActionName={'Swap'}
-        onShiftDrop={onShiftDrop}
-        getSchedulerData={getSchedulerData}
+        // displayAvatar={true}
+        // resourceCellContent={resourceCellContent}
+        // config={config}
+        // firstAction={firstAction}
+        // secondAction={secondAction}
+        // firstActionName={'Delete'}
+        // secondActionName={'Swap'}
+        // onShiftDrop={onShiftDrop}
+        // getSchedulerData={getSchedulerData}
       />
     </div>
   )
