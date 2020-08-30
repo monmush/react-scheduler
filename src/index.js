@@ -50,7 +50,6 @@ const Scheduler = ({
   // Config
   const [config, setConfig] = useState({
     currentDate: dayjs(),
-    locale: 'en',
     schedulerTitle: 'React simple scheduler',
     schedulerWidth: windowWidth * 0.9,
     resourcesViewWidth: resourcesViewWidth,
@@ -60,7 +59,7 @@ const Scheduler = ({
     cellHeight: 55,
     cellPadding: [8, 12, 8, 12],
     dateFormat: 'DD/MM/YYYY',
-    cellPopoverWidth: '200px',
+    cellPopoverWidth: 200,
     resourceTitle: 'Resources',
     view: [{ viewName: 'Week', viewType: ViewTypes.Week }],
     ...userConfig
@@ -86,13 +85,15 @@ const Scheduler = ({
     resourceCellContent: resourceCellContent,
     firstAction: firstAction,
     secondAction: secondAction,
-    firstActionName: firstActionName || 'Action 1',
-    secondActionName: secondActionName || 'Action 2'
+    firstActionName: firstActionName || null,
+    secondActionName: secondActionName || null
   }
 
   // Scheduler data getter function
   useEffect(() => {
-    getSchedulerData(SchedulerData)
+    if (getSchedulerData) {
+      getSchedulerData(SchedulerData)
+    }
   }, [SchedulerData])
 
   return (

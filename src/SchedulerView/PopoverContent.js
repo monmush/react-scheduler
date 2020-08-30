@@ -13,7 +13,7 @@ const PopoverContent = ({ event }) => {
   } = useContext(SchedulerDataContext)
   const { shiftType, start, end } = event
   const style = {
-    width: cellPopoverWidth
+    width: `${cellPopoverWidth}px`
   }
   return (
     <Row style={style}>

@@ -12,8 +12,7 @@ import './index.css'
 const App = () => {
   const config = {
     cellHeight: '65',
-    currentDate: dayjs('05/08/2020', 'DD/MM/YYYY'),
-    locale: 'vi'
+    currentDate: dayjs('05/08/2020', 'DD/MM/YYYY')
   }
   const [data, setData] = useState({
     events: sampleEvents,
@@ -67,17 +66,17 @@ const App = () => {
   return (
     <div className='ScheudlerContainer'>
       <Scheduler
-        events={events}
-        resources={resources}
-        shiftTypes={shiftTypes}
+        events={events} //required
+        resources={resources} //required
+        // config={config}
+        // shiftTypes={shiftTypes} //required
+        // onShiftDrop={onShiftDrop} //required
         // displayAvatar={true}
         // resourceCellContent={resourceCellContent}
-        // config={config}
         // firstAction={firstAction}
         // secondAction={secondAction}
         // firstActionName={'Delete'}
         // secondActionName={'Swap'}
-        // onShiftDrop={onShiftDrop}
         // getSchedulerData={getSchedulerData}
       />
     </div>
