@@ -15,12 +15,14 @@ const ResourceCellContent = ({ text, record }) => {
   const style = {
     height: `${cellHeight}px`
   }
-  const content = resourceCellContent(record, resources, events)
+  const content = resourceCellContent
+    ? resourceCellContent(record, resources, events)
+    : null
 
   const renderCellContent = (
     <Col>
       <p>{text}</p>
-      {resourceCellContent ? content : null}
+      {content}
     </Col>
   )
 

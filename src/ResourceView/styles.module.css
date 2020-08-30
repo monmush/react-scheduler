@@ -20,8 +20,9 @@
 /* ResourceViewBody */
 .ResourceViewBody {
   margin: 0;
-  overflow: auto;
+  overflow: scroll hidden;
 }
+
 .ResourceViewBodyTableContainer {
   padding: 0;
 }

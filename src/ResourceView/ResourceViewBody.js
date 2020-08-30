@@ -4,6 +4,7 @@ import { SchedulerDataContext } from '../index'
 import { Table } from 'antd'
 import styles from './styles.module.css'
 import { ScrollSyncPane } from 'react-scroll-sync'
+
 const ResourcesBody = () => {
   const columns = [
     {
