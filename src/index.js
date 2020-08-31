@@ -1,5 +1,4 @@
 import React, { createContext, useState, useEffect } from 'react'
-import '../node_modules/antd/dist/antd.min.css'
 import styles from './styles.module.css'
 import SchedulerHeader from './SchedulerHeader/index'
 import ResourceView from './ResourceView/index'
@@ -49,7 +48,7 @@ const Scheduler = ({
 
   // Config
   const [config, setConfig] = useState({
-    currentDate: dayjs(),
+    currentDate: dayjs().format('DD/MM/YYYY'),
     schedulerTitle: 'React simple scheduler',
     schedulerWidth: windowWidth * 0.9,
     resourcesViewWidth: resourcesViewWidth,

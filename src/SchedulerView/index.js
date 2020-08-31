@@ -7,9 +7,9 @@ import SchedulerViewBody from './SchedulerViewBody'
 
 const Header = () => {
   const {
-    config: { currentDate, schedulerViewWidth }
+    config: { currentDate, schedulerViewWidth, dateFormat }
   } = useContext(SchedulerDataContext)
-  const weekStart = dayjs(currentDate).startOf('week')
+  const weekStart = dayjs(currentDate, dateFormat).startOf('week')
   const days = []
   for (let i = 0; i <= 6; i++) {
     days.push(dayjs(weekStart).add(i, 'days'))

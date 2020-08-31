@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Col, Button } from 'antd'
+import { Button, Col } from 'antd'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import styles from './styles.module.css'
 import { SchedulerDataContext } from '../index'
@@ -20,17 +20,21 @@ const SchedulerDatePicker = () => {
 
   // Previous time
   const onPrev = () => {
-    setCurrentDate((prev) => dayjs(prev, dateFormat).subtract(1, 'week'))
+    setCurrentDate((prev) =>
+      dayjs(prev, dateFormat).subtract(1, 'week').format(dateFormat)
+    )
   }
 
   // Next time
   const onNext = () => {
-    setCurrentDate((prev) => dayjs(prev, dateFormat).add(1, 'week'))
+    setCurrentDate((prev) =>
+      dayjs(prev, dateFormat).add(1, 'week').format(dateFormat)
+    )
   }
 
   // Listen to date change
   const dateChange = (date) => {
-    setCurrentDate(date)
+    setCurrentDate(date.format(dateFormat))
   }
 
   // Update the currentDate to global context
@@ -49,7 +53,7 @@ const SchedulerDatePicker = () => {
         picker='week'
         className={styles.input}
         bordered={false}
-        value={currentDate}
+        value={dayjs(currentDate, dateFormat)}
         onChange={dateChange}
         suffixIcon={null}
         allowClear={false}

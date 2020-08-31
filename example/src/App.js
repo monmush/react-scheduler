@@ -2,17 +2,16 @@ import React, { useState } from 'react'
 import Scheduler from 'react-scheduler'
 import 'react-scheduler/dist/index.css'
 import 'react-scheduler/node_modules/antd/dist/antd.min.css'
-import 'react-scheduler/node_modules/react-dnd'
-import 'react-scheduler/node_modules/react-dnd-html5-backend'
-import dayjs from 'react-scheduler/node_modules/dayjs'
 import { message } from 'antd'
+import dayjs from 'dayjs'
 import { sampleEvents, sampleShiftTypes, sampleResources } from './SampleData'
 import './index.css'
 
 const App = () => {
   const config = {
     cellHeight: '65',
-    currentDate: dayjs('05/08/2020', 'DD/MM/YYYY')
+    currentDate: '05/08/2020',
+    dateFormat: 'DD-MM-YYYY'
   }
   const [data, setData] = useState({
     events: sampleEvents,
@@ -22,7 +21,7 @@ const App = () => {
   const { events, shiftTypes, resources } = data
 
   const resourceCellContent = (record, resources, events) => {
-    const dateFormat = 'DD/MM/YYYY'
+    const dateFormat = 'DD-MM-YYYY'
     const startOfMonth = dayjs().startOf('month')
     const endOfMonth = dayjs().endOf('month')
     const resourceCellContentStyle = {
@@ -68,7 +67,7 @@ const App = () => {
       <Scheduler
         events={events} //required
         resources={resources} //required
-        // config={config}
+        config={config}
         // shiftTypes={shiftTypes} //required
         // onShiftDrop={onShiftDrop} //required
         // displayAvatar={true}
