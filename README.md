@@ -2,6 +2,8 @@
 
 > A lightweight react scheduler used best for shifts planning
 
+[Demo]('https://monmush.github.io/react-simple-scheduler/')
+
 ## Install
 
 ---
