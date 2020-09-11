@@ -1,13 +1,14 @@
 import React, { useContext } from 'react'
 import { useDrop } from 'react-dnd'
 import { SchedulerDataContext } from '../index'
-import { v4 as uuidv4 } from 'uuid'
+
 import { getPadding, getCellHeight } from '../shared/Method'
 import { message } from 'antd'
 import styles from './styles.module.css'
 
-const Cell = ({ cellData = {}, children, date }) => {
-  const { slotId, resource } = cellData
+const Cell = ({ cellData = {}, children, date: workingDate }) => {
+  const { slotId, resource, resourceId } = cellData
+
   // context
   const {
     config: {
@@ -20,29 +21,19 @@ const Cell = ({ cellData = {}, children, date }) => {
     },
     onShiftDrop
   } = useContext(SchedulerDataContext)
-
+  const date = workingDate.format(dateFormat)
   // react-dnd
   const [{ isOver }, drop] = useDrop({
     accept: 'shift',
     drop: (item, monitor) => {
-      const droppedEvent = {
-        id: uuidv4(),
-        event: {
-          date: date.format(dateFormat),
-          start: item.start,
-          end: item.end,
-          shiftType: item.shiftType
-        },
-        slotId: slotId,
-        resource: resource
-      }
       const existedShiftInCell =
-        cellData.event.filter((evt) => evt.date === date.format(dateFormat))
-          .length !== 0
+        cellData.event.filter(
+          (evt) => evt.date === workingDate.format(dateFormat)
+        ).length !== 0
       // Check if shift already existed
       // existed => not allow to drop new shift to the cell
       if (cellData.length === 0 || existedShiftInCell === false) {
-        onShiftDrop(droppedEvent)
+        onShiftDrop(date, item, slotId, resource, resourceId)
       } else {
         message.error('Employee already had a shift')
       }

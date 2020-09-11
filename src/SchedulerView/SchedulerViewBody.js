@@ -9,8 +9,7 @@ const SchedulerViewBody = ({ days }) => {
   const {
     config: { dateFormat, schedulerViewWidth },
     events,
-    resources,
-    resourcesList
+    resources
   } = useContext(SchedulerDataContext)
 
   const getCurrentWeekDays = () => {
@@ -63,7 +62,8 @@ const SchedulerViewBody = ({ days }) => {
     columnData.push({
       slotId: i,
       event: [],
-      resource: resourcesList[i]
+      resource: resources[i].name,
+      resourceId: resources[i].id
     })
   }
 
@@ -72,7 +72,8 @@ const SchedulerViewBody = ({ days }) => {
       ...evt.event,
       id: evt.id,
       slotId: evt.slotId,
-      resource: evt.resource
+      resource: evt.resource,
+      resourceId: evt.resourceId
     })
   })
 

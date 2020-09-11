@@ -28,15 +28,12 @@ const Scheduler = ({
     setWindowWidth(Math.floor(window.innerWidth))
   )
 
-  // Create an array of resources
-  const resourcesList = resources.map((item) => item.name)
-
   // Add slotId attribute depend on the resouce
   const formattedUserEvents =
     !!userEvents &&
     userEvents.map((evt) => ({
       ...evt,
-      slotId: resourcesList.indexOf(evt.resource)
+      slotId: resources.findIndex((x) => x.id === evt.resourceId) // problems - phải chọn slotId dựa vào index của id của resources
     }))
 
   // Calculate scheduler size base on viewport
@@ -74,7 +71,6 @@ const Scheduler = ({
     resources: resources,
     events: formattedUserEvents,
     shiftTypes: shiftTypes,
-    resourcesList: resourcesList,
     displayAvatar: displayAvatar,
     windowWidth: windowWidth,
 
@@ -94,7 +90,6 @@ const Scheduler = ({
       getSchedulerData(SchedulerData)
     }
   }, [SchedulerData])
-
   return (
     <DndProvider backend={HTML5Backend}>
       <SchedulerDataContext.Provider value={SchedulerData}>

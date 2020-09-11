@@ -5,6 +5,7 @@ import 'react-scheduler/node_modules/antd/dist/antd.min.css'
 import { message } from 'antd'
 import dayjs from 'dayjs'
 import { sampleEvents, sampleShiftTypes, sampleResources } from './SampleData'
+import { v4 as uuidv4 } from 'uuid'
 import './index.css'
 
 const App = () => {
@@ -31,7 +32,6 @@ const App = () => {
     const pStyle = {
       margin: '0'
     }
-
     const shiftInMonth = events.filter(
       (item) =>
         item.resource === record.name &&
@@ -53,9 +53,21 @@ const App = () => {
     message.success('Action 2')
   }
 
-  const onShiftDrop = (event) => {
-    message.success(JSON.stringify(event))
-    setData((prev) => ({ ...prev, events: [...prev.events, event] }))
+  const onShiftDrop = (date, item, slotId, resource, resourceId) => {
+    const newEvent = {
+      id: uuidv4(),
+      event: {
+        date: date,
+        start: item.start,
+        end: item.end,
+        shiftType: item.shiftType
+      },
+      slotId: slotId,
+      resource: resource,
+      resourceId: resourceId
+    }
+    message.success(JSON.stringify(newEvent))
+    setData((prev) => ({ ...prev, events: [...prev.events, newEvent] }))
   }
 
   const getSchedulerData = (schedulerData) => {
@@ -68,8 +80,8 @@ const App = () => {
         events={events} //required
         resources={resources} //required
         config={config}
-        // shiftTypes={shiftTypes} //required
-        // onShiftDrop={onShiftDrop} //required
+        shiftTypes={shiftTypes} //required
+        onShiftDrop={onShiftDrop} //required
         // displayAvatar={true}
         // resourceCellContent={resourceCellContent}
         // firstAction={firstAction}

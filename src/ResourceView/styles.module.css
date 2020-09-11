@@ -20,7 +20,7 @@
 /* ResourceViewBody */
 .ResourceViewBody {
   margin: 0;
-  overflow: scroll hidden;
+  overflow: auto;
 }
 
 .ResourceViewBodyTableContainer {
